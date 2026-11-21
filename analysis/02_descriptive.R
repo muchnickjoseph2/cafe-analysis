@@ -242,3 +242,50 @@ tex <- c("\\begin{tabular}{p{5.2cm}rrrp{2.6cm}p{2.2cm}p{2.6cm}}",
 dir.create("report/tables", showWarnings = FALSE, recursive = TRUE)
 writeLines(tex, "report/tables/D_table.tex")
 
+# ---- 9. Full descriptive statistics for the appendix ----
+fmt <- function(x) sprintf("%.2f", x)
+
+# Numeric variables and groups (reuses `long` from section 6)
+stats <- long %>%
+  group_by(set, group) %>%
+  summarise(n = n(), mean = mean(value), sd = sd(value),
+            median = median(value), iqr = IQR(value),
+            min = min(value), max = max(value), .groups = "drop") %>%
+  mutate(panel = paste0(set, ": ", group))
+
+stats_tex <- c(
+  "\\begin{tabular}{p{5.6cm}rrrrrrr}",
+  "\\toprule",
+  "Variable: group & $n$ & Mean & SD & Median & IQR & Min & Max \\\\",
+  "\\midrule",
+  paste0(tex_escape(stats$panel), " & ", stats$n, " & ", fmt(stats$mean), " & ",
+         fmt(stats$sd), " & ", fmt(stats$median), " & ", fmt(stats$iqr), " & ",
+         fmt(stats$min), " & ", fmt(stats$max), " \\\\"),
+  "\\bottomrule",
+  "\\end{tabular}")
+writeLines(stats_tex, "report/tables/D_stats.tex")
+
+# Categorical variables: counts and percentages (missing values shown as a row)
+cat_vars <- c(cafe_type = "Cafe type", top_rated = "Top-rated (4.7 or higher)",
+              n_group_median = "Number of ratings vs median",
+              n_group_3 = "Ratings group (A4)", n_group_2 = "Ratings group (A9)")
+
+counts <- map_dfr(names(cat_vars), function(v) {
+  dat %>%
+    count(level = as.character(.data[[v]]), name = "n") %>%
+    mutate(variable = cat_vars[[v]],
+           level = replace_na(level, "Missing"),
+           pct = 100 * n / sum(n))
+})
+print(counts, n = Inf)
+
+counts_tex <- c(
+  "\\begin{tabular}{p{4.6cm}p{4.2cm}rr}",
+  "\\toprule",
+  "Variable & Category & $n$ & \\% \\\\",
+  "\\midrule",
+  paste0(tex_escape(counts$variable), " & ", tex_escape(counts$level), " & ",
+         counts$n, " & ", sprintf("%.1f", counts$pct), " \\\\"),
+  "\\bottomrule",
+  "\\end{tabular}")
+writeLines(counts_tex, "report/tables/D_counts.tex")
