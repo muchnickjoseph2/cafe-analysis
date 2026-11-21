@@ -113,3 +113,67 @@ desc_plots(dat, "rating", "cafe_type",      "Google rating (points)", "D_rating_
 desc_plots(dat, "rating", "n_group_2",      "Google rating (points)", "D_rating_by_n2.pdf",     binwidth = 0.1)  # A9
 desc_plots(dat, "adj_rating", "n_group_2",  "Adjusted rating (points)", "D_adj_rating_by_n2.pdf")                # A9
 
+# ---- 6. Normality numbers and the central limit theorem ----
+group_levels <- c("All cafes", "Above median", "Below median",
+                  "Few (<100)", "Medium (100-1,000)", "Many (>1,000)",
+                  "Independent", "Local Chain", "International Chain",
+                  "Under 100", "100 or more")
+
+long <- bind_rows(
+  dat %>% transmute(set = "Rating",                            group = "All cafes",                  value = rating),
+  dat %>% transmute(set = "Adjusted rating",                   group = "All cafes",                  value = adj_rating),
+  dat %>% transmute(set = "Number of ratings",                 group = "All cafes",                  value = n_ratings),
+  dat %>% transmute(set = "Adjusted minus raw (A3)",           group = "All cafes",                  value = diff_adj),
+  dat %>% transmute(set = "Rating by median split (A2)",       group = as.character(n_group_median), value = rating),
+  dat %>% transmute(set = "Rating by ratings group (A4)",      group = as.character(n_group_3),      value = rating),
+  dat %>% transmute(set = "Rating by cafe type (A8)",          group = as.character(cafe_type),      value = rating),
+  dat %>% transmute(set = "Rating by 100 split (A9)",          group = as.character(n_group_2),      value = rating),
+  dat %>% transmute(set = "Adjusted rating by 100 split (A9)", group = as.character(n_group_2),      value = adj_rating)
+) %>%
+  filter(!is.na(group), !is.na(value)) %>%
+  mutate(set   = factor(set, levels = unique(set)),
+         group = factor(group, levels = group_levels))
+
+# Skewness: 0 = symmetric, negative = left tail, positive = right tail
+calc_skew <- function(x) {
+  x <- x[!is.na(x)]
+  m <- mean(x)
+  mean((x - m)^3) / mean((x - m)^2)^1.5
+}
+
+# Bootstrap of the mean: 5,000 resamples, seed fixed so results are reproducible
+set.seed(2026)
+B <- 5000
+boot_means <- function(x, B) replicate(B, mean(sample(x, length(x), replace = TRUE)))
+
+res <- long %>%
+  group_by(set, group) %>%
+  summarise(n         = n(),
+            skew      = calc_skew(value),
+            shapiro_p = shapiro.test(value)$p.value,   # optional; does not override the plots
+            boot      = list(boot_means(value, B)),
+            .groups   = "drop") %>%
+  mutate(skew_boot = map_dbl(boot, calc_skew),         # skewness of the bootstrapped means
+         panel     = factor(paste0(set, ": ", group), levels = paste0(set, ": ", group)))
+
+res %>%
+  select(panel, n, skew, skew_boot, shapiro_p) %>%
+  mutate(across(c(skew, skew_boot), ~ round(.x, 2)),
+         shapiro_p = round(shapiro_p, 3)) %>%
+  print(n = Inf, width = Inf)
+
+# ---- 7. Distribution of the bootstrapped means ----
+boot_long <- res %>% select(panel, boot) %>% unnest(boot)
+
+p_bh <- ggplot(boot_long, aes(x = boot)) +
+  geom_histogram(bins = 40, fill = "grey70", colour = "white") +
+  facet_wrap(~ panel, scales = "free", ncol = 4, labeller = label_wrap_gen(28)) +
+  labs(x = "Bootstrapped mean", y = "Count")
+ggsave("report/figures/D_boot_hist.pdf", p_bh, width = 12, height = 12)
+
+p_bq <- ggplot(boot_long, aes(sample = boot)) +
+  stat_qq(size = 0.3) + stat_qq_line() +
+  facet_wrap(~ panel, scales = "free", ncol = 4, labeller = label_wrap_gen(28)) +
+  labs(x = "Theoretical normal quantile", y = "Bootstrapped mean")
+ggsave("report/figures/D_boot_qq.pdf", p_bq, width = 12, height = 12)
+
