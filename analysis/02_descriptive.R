@@ -177,3 +177,68 @@ p_bq <- ggplot(boot_long, aes(sample = boot)) +
   labs(x = "Theoretical normal quantile", y = "Bootstrapped mean")
 ggsave("report/figures/D_boot_qq.pdf", p_bq, width = 12, height = 12)
 
+# ---- 8. The descriptive table (D_table.tex) ----
+# YOUR judgement from the histograms and Q-Q plots of each variable/group,
+# in the same order as the printed table. Check each one against the figures.
+normal_plots <- c(
+  "No, left-skewed",              #  1 Rating: All cafes
+  "No, left-skewed",              #  2 Adjusted rating: All cafes
+  "No, strongly right-skewed",    #  3 Number of ratings: All cafes
+  "No, heavy right tail",         #  4 Adjusted minus raw (A3)
+  "No, left-skewed",              #  5 A2: Above median
+  "No, left-skewed",              #  6 A2: Below median
+  "Roughly normal",               #  7 A4: Few
+  "No, left-skewed",              #  8 A4: Medium
+  "No, left-skewed",              #  9 A4: Many
+  "No, left-skewed",              # 10 A8: Independent
+  "No, left-skewed",              # 11 A8: Local Chain
+  "Cannot judge (n = 8)",         # 12 A8: International Chain
+  "Roughly normal",               # 13 A9 rating: Under 100
+  "No, left-skewed",              # 14 A9 rating: 100 or more
+  "Roughly normal",               # 15 A9 adjusted rating: Under 100
+  "No, left-skewed"               # 16 A9 adjusted rating: 100 or more
+)
+stopifnot(length(normal_plots) == nrow(res))
+
+# Rule for the central limit theorem: smallest group has n >= 30 AND the
+# skewness of the bootstrapped means is below 0.5 in absolute value
+# (which the Q-Q plots of the bootstrapped means confirm).
+tab <- res %>%
+  mutate(normal_plots = normal_plots,
+         clt = case_when(n < 30 ~ "No (n < 30)",
+                         abs(skew_boot) < 0.5 ~ "Yes",
+                         .default = "No (means skewed)"),
+         conclusion = case_when(
+           normal_plots == "Roughly normal" ~ "Parametric",
+           clt == "Yes"                     ~ "Parametric (CLT)",
+           n < 30                           ~ "Undecided (n too small)",
+           .default                         = "Non-parametric"))
+
+tab %>% select(panel, n, normal_plots, clt, conclusion) %>% print(n = Inf, width = Inf)
+
+# Write the table as LaTeX (booktabs). The caption is added in the report source.
+tex_escape <- function(x) {
+  x <- str_replace_all(x, fixed("&"), "\\&")
+  x <- str_replace_all(x, fixed("<"), "\\textless{}")
+  x <- str_replace_all(x, fixed(">"), "\\textgreater{}")
+  x
+}
+
+row_tex <- tab %>%
+  transmute(line = paste(tex_escape(as.character(panel)), n,
+                         sprintf("%.2f", skew), sprintf("%.2f", skew_boot),
+                         tex_escape(normal_plots), tex_escape(clt),
+                         tex_escape(conclusion), sep = " & ")) %>%
+  pull(line)
+
+tex <- c("\\begin{tabular}{p{5.2cm}rrrp{2.6cm}p{2.2cm}p{2.6cm}}",
+         "\\toprule",
+         "Variable: group & $n$ & Skew & Skew of boot. means & Normal (plots) & CLT applies & Conclusion \\\\",
+         "\\midrule",
+         paste0(row_tex, " \\\\"),
+         "\\bottomrule",
+         "\\end{tabular}")
+
+dir.create("report/tables", showWarnings = FALSE, recursive = TRUE)
+writeLines(tex, "report/tables/D_table.tex")
+
