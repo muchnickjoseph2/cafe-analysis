@@ -1,0 +1,206 @@
+%% Prague Cafe Project -- presentation (topic: Ratings)
+%% Compile from the folder presentation/. Needs ../report/tables/numbers.tex and ../report/figures/
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{../report/figures/}}
+
+% same statistics macros as in the report (cafestyle.sty)
+\newcommand{\pr}{\textit{p}}
+\newcommand{\Ncol}{\textit{N}}
+\newcommand{\CI}[2]{95\% CI [#1,\,#2]}
+\newcommand{\tstat}[2]{\textit{t}(#1)\,=\,#2}
+\newcommand{\Fstat}[3]{\textit{F}(#1,\,#2)\,=\,#3}
+\newcommand{\chisqstat}[3]{$\chi^2$(#1, \Ncol\,=\,#2)\,=\,#3}
+\newcommand{\pval}[1]{\pr\,=\,#1}
+\newcommand{\plt}[1]{\pr\,<\,#1}
+\input{../report/tables/numbers.tex}
+
+% one figure box; shows a visible note if the file is missing
+\newcommand{\fig}[2][0.95]{\IfFileExists{../report/figures/#2}{\includegraphics[width=#1\linewidth]{#2}}{\fbox{Missing: \detokenize{#2}}}}
+
+\title[Google ratings of Prague cafés]{Do more Google ratings mean better ratings?}
+\subtitle{Evidence from \NCafes{} Prague cafés}
+\author{Joseph Muchnick \and Ryan David}
+\institute{Data Analytics}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Question and data}
+\begin{itemize}
+  \item \textbf{Question:} how is a café's Google rating related to its number of ratings, its type, and a shrinkage-adjusted rating?
+  \item \textbf{Data:} student-collected convenience sample, \NCafes{} cafés after cleaning (299 raw rows, 99 empty rows and 9 duplicates removed)
+  \item \textbf{Outcome:} Google rating in points (mean \MeanRating{}; median number of ratings \MedianN{})
+  \item \textbf{Adjusted rating:} $(nR + 50C)/(n + 50)$ pulls ratings with few votes towards the mean $C$
+  \item \textbf{Ten planned questions} (A1--A10), hypotheses written before looking at the data
+\end{itemize}
+\end{frame}
+
+\begin{frame}{How we answered}
+\begin{itemize}
+  \item $\alpha = .05$; every result shows an estimate, its 95\% CI and an effect size
+  \item Test choice from the descriptives: parametric if the data are normal or the central limit theorem applies (bootstrap check, 5,000 resamples); otherwise rank-based
+  \item Regressions: robust (HC3) standard errors when variance is not constant; residual and influence checks
+  \item Missing values stay missing: each analysis reports how many cafés it uses
+  \item Observational convenience sample: results describe \emph{this sample}, no causal claims
+\end{itemize}
+\end{frame}
+
+\begin{frame}{A1: Is the mean rating different from 4.5?}
+\begin{columns}[T]
+\column{0.42\textwidth}\fig{A1_figure.pdf}
+\column{0.56\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} one-sample $t$-test, two-tailed
+  \item Mean \AoneEst{} points, \CI{\AoneLo}{\AoneHi} ($n=\AoneN$)
+  \item \AoneStat, \AoneP; Cohen's $d=\AoneEff$
+  \item \textbf{Takeaway:} Slightly above 4.5, but practically tiny.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A2: More ratings, lower rating? (above vs.\ below median)}
+\begin{columns}[T]
+\column{0.42\textwidth}\fig{A2_figure.pdf}
+\column{0.56\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} Welch $t$-test, one-tailed (above $<$ below, fixed in advance)
+  \item Difference above $-$ below: \AtwoEst{} points, \CI{\AtwoLo}{\AtwoHi} ($n=\AtwoN$)
+  \item $d=\AtwoEff$, \CI{\AtwoEffLo}{\AtwoEffHi}; \AtwoStat, \AtwoP
+  \item \textbf{Takeaway:} No evidence of a difference.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A3: Adjusted vs.\ raw rating (paired)}
+\begin{columns}[T]
+\column{0.46\textwidth}\fig{A3_figure.pdf}
+\column{0.52\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} paired $t$-test (adjusted $-$ raw)
+  \item Mean difference \AthreeEst{} points, \CI{\AthreeLo}{\AthreeHi} ($n=\AthreeN$)
+  \item $d_z=\AthreeEff$, \CI{\AthreeEffLo}{\AthreeEffHi}; \AthreeStat, \AthreeP
+  \item \textbf{Takeaway:} No average change; a few low-vote cafés move up.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A4: Few, medium or many ratings?}
+\begin{columns}[T]
+\column{0.5\textwidth}\fig{A4_figure.pdf}
+\column{0.48\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} Welch's ANOVA, Games--Howell post hoc
+  \item \AfourStat, \AfourP, $\eta^2=\AfourEff$, \CI{\AfourEffLo}{\AfourEffHi} ($n=\AfourN$)
+  \item Means: few 4.32, medium 4.62, many 4.48 points
+  \item \textbf{Takeaway:} Medium-sized cafés rate highest, not a straight line.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A5: Top-rated (4.7+) by below/above median number of ratings}
+\begin{columns}[T]
+\column{0.42\textwidth}\fig{A5_figure.pdf}
+\column{0.56\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} chi-square on the $2\times2$ table, one-tailed
+  \item Top-rated: 45.2\% (below median) vs.\ 28.7\% (above)
+  \item Difference \AfiveEst{} pp, \CI{\AfiveLo}{\AfiveHi}; Cram\'er's $V=\AfiveEff$, \CI{\AfiveEffLo}{\AfiveEffHi}
+  \item \AfiveStat, \AfiveP
+  \item \textbf{Takeaway:} Fewer ratings, more often top-rated.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A6: Rating and number of ratings (correlation)}
+\begin{columns}[T]
+\column{0.5\textwidth}\fig{A6_figure.pdf}
+\column{0.48\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} Spearman (number of ratings is extremely skewed)
+  \item $\rho=\AsixEst$, bootstrap \CI{\AsixLo}{\AsixHi}, $n=\AsixN$; \AsixP
+  \item Pearson $r=\AsixPearson$ (\AsixPearsonP); Kendall $\tau=\AsixKendall$ (\AsixKendallP)
+  \item \textbf{Takeaway:} At most a weak negative link.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A7: Simple regression: rating per 1,000 ratings}
+\begin{columns}[T]
+\column{0.5\textwidth}\fig{A7_figure.pdf}
+\column{0.48\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} OLS, slope (Breusch--Pagan $p=\AsevenBP$, classical SEs)
+  \item Slope \AsevenEst{} points per 1,000 ratings, \CI{\AsevenLo}{\AsevenHi}; \AsevenP; $R^2=\AsevenEff$
+  \item \textbf{Takeaway:} No evidence of a slope.
+  \item \textbf{Caution:} Cafe Louvre (23,951 ratings) is highly influential. Without it (exploratory): \AsevenXEst, \AsevenXP.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A8: Rating by café type, controlling for number of ratings}
+\begin{columns}[T]
+\column{0.5\textwidth}\fig{A8_figure.pdf}
+\column{0.48\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} multiple regression, joint $F$ test (reference: independent)
+  \item \AeightStat, \AeightP; $n=\AeightN$, $R^2=\AeightEff$
+  \item International chains: \AeightIntEst{} points, \CI{\AeightIntLo}{\AeightIntHi}
+  \item Local chains: \AeightLocEst{} points, \CI{\AeightLocLo}{\AeightLocHi}
+  \item \textbf{Takeaway:} International chains rate about 0.29 points lower.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A9: Does the adjustment work differently by number of ratings?}
+\begin{columns}[T]
+\column{0.5\textwidth}\fig{A9_figure.pdf}
+\column{0.48\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} regression with interaction, robust (HC3) SEs
+  \item Slope adjusted on raw: \AnineSlopeU{} (under 100) vs.\ \AnineSlopeO{} (100+)
+  \item Interaction \AnineEst, \CI{\AnineLo}{\AnineHi}; \AnineP; $R^2=\AnineEff$
+  \item \textbf{Takeaway:} The adjustment pulls few-vote cafés to the mean (by design).
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{A10: Probability of being top-rated per 1,000 ratings}
+\begin{columns}[T]
+\column{0.5\textwidth}\fig{A10_figure.pdf}
+\column{0.48\textwidth}
+\begin{itemize}
+  \item \textbf{Test:} logistic regression; average marginal effect
+  \item \AtenEst{} percentage points per 1,000 ratings, bootstrap \CI{\AtenLo}{\AtenHi}
+  \item Odds ratio \AtenOR{} (\CI{\AtenORLo}{\AtenORHi}); \AtenP; $n=\AtenN$ ($\AtenEvents$ top-rated)
+  \item \textbf{Takeaway:} More ratings, lower chance of a top rating.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{All results at a glance}
+\centering\scriptsize
+\IfFileExists{../report/tables/summary.tex}{\resizebox{0.95\linewidth}{!}{\input{../report/tables/summary.tex}}}{Missing summary table}
+\end{frame}
+
+\begin{frame}{Conclusions and limits}
+\begin{itemize}
+  \item Rating is not a simple function of popularity: cafés with few ratings rate lowest, medium-sized the highest, and there is no clear overall slope (A4, A6, A7)
+  \item Cafés with many ratings are less often top-rated (A5, A10); international chains rate lower (A8)
+  \item The shrinkage adjustment changes mainly cafés with few votes (A3, A9)
+  \item \textbf{Limits:} convenience sample, observational data, cafés in the same district are not independent, A8 rests on \NIntl{} chains, exploratory checks are leads only
+  \item Code, report and slides: \texttt{github.com/muchnickjoseph2/cafe-analysis}
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,4 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
 report/*.log
 report/*.synctex.gz
 report/*.aux
 report/*.out
+presentation/*.log
+presentation/*.synctex.gz
+presentation/*.aux
+presentation/*.out
+presentation/*.nav
+presentation/*.snm
+presentation/*.toc
