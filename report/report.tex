@@ -1,0 +1,318 @@
+%% =====================================================================
+%%  Prague Cafe Project -- report (topic: Ratings)
+%%  Put cafestyle.sty in the same folder. All numbers in the text come from
+%%  report/tables/numbers.tex, which 03_analysis.R writes.
+%% =====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage{cafestyle}
+
+\newcommand{\inputtable}[1]{\IfFileExists{#1}{\input{#1}}{\par\noindent\fbox{\parbox{0.9\linewidth}{\centering Missing table file: \texttt{\detokenize{#1}}}}\par}}
+\newcommand{\inputfigure}[2][0.85]{\IfFileExists{#2}{\includegraphics[width=#1\linewidth]{#2}}{\fbox{\parbox{0.8\linewidth}{\centering Missing figure file: \texttt{\detokenize{#2}}}}}}
+
+% numbers produced by 03_analysis.R (compile after running the script)
+\IfFileExists{tables/numbers.tex}{\input{tables/numbers.tex}}{\PackageError{report}{Run 03_analysis.R first: tables/numbers.tex is missing}{}}
+
+% ---- FILL IN: your details, and three numbers printed by 01_cleaning.R ----
+\newcommand{\MyName}{Joseph Muchnick}
+\newcommand{\PartnerName}{Ryan David}
+\newcommand{\RawRows}{299}      % rows in raw_data.csv
+\newcommand{\EmptyRows}{0}     % empty rows removed
+\newcommand{\DupRows}{9}        % duplicate rows removed
+\newcommand{\RepoURL}{https://github.com/muchnickjoseph2/cafe-analysis}
+
+\title{\textbf{Do more Google ratings mean better ratings? Evidence from Prague caf\'es}}
+\author{\MyName\\[0.3ex]\small Data Analytics\\[0.3ex]\small Partner: \PartnerName}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent The outcome is the Google rating (points, 1--5) of \NCafes{} Prague caf\'es in a student-collected convenience sample. We ask how the rating relates to the number of ratings a caf\'e has received, to its type, and to a shrinkage-adjusted rating. The mean rating is \AoneEst{} points, only slightly above the benchmark of 4.5. Caf\'es with few ratings rate lowest, but the relation is not a straight line, and there is no clear overall slope (\AsevenEst{} points per 1,000 ratings). International chains rate about \AeightIntEst{} points relative to independents. Each additional 1,000 ratings goes with an average change of \AtenEst{} percentage points in the probability of being top-rated (4.7 or higher). All results describe this sample and are not causal.
+\end{abstract}
+
+\section{Introduction}
+A caf\'e's Google rating is the first thing many customers see, but a high average based on a handful of ratings is a weaker signal than the same average based on thousands. We therefore ask whether the rating of a caf\'e is related to how many ratings it has, whether it differs by caf\'e type, and how much a shrinkage adjustment that pulls ratings with few votes towards the overall mean changes the picture. The ten research questions (A1--A10) range from a comparison with a benchmark of 4.5 to a logistic model for being top-rated.
+
+\section{Data and methods}
+
+\subsection{Data}
+The data are a convenience sample of Prague caf\'es collected by students from Google Maps. The raw file has \RawRows{} rows. The cleaning script (\texttt{01\_cleaning.R}) removed \EmptyRows{} empty rows and \DupRows{} duplicate caf\'es (the same address or coordinates entered twice), which leaves \NCafes{} caf\'es in the analysis dataset. Missing values were kept as missing and not imputed. Each analysis uses the caf\'es with complete data on its own variables, and the number of caf\'es used is reported with each result. In the analysis dataset, \MissRating{} caf\'es lack a rating, \MissNratings{} lack a number of ratings, \MissAdj{} lack an adjusted rating and \MissType{} lack a caf\'e type.
+
+Four variables are derived from the raw data by formula in the script. The \emph{Adjusted Rating} is $(n R + 50\,C)/(n + 50)$, where $R$ is the caf\'e's rating, $n$ its number of ratings and $C=\MeanRating$ the mean rating of all caf\'es, so that ratings based on few votes are pulled towards $C$. The median number of ratings is \MedianN{}, which defines the groups \emph{above} and \emph{below median}. The three-group variable splits caf\'es into few ($<100$, $n=\NFew$), medium (100--1,000, $n=\NMedium$) and many ($>1{,}000$, $n=\NMany$) ratings, and the two-group variable splits at 100 ratings. A caf\'e is \emph{top-rated} if its rating is at least 4.7 (\NTopRated{} caf\'es). The caf\'e types are independent ($n=\NIndep$), local chain ($n=\NLocal$) and international chain ($n=\NIntl$). No variable was log-transformed: we keep the original units so that the effects read in rating points, and we use rank-based or robust methods where the distribution requires it. Full descriptive statistics are in Appendix~\ref{app:desc} and the distribution checks in Appendix~\ref{app:dist}.
+
+\subsection{Statistical methods}
+All tests use $\alpha=.05$. For each question the descriptive script decided between a parametric and a rank-based test from the plots, the skewness and the sample size: where the data are not normal but the smallest group has at least 30 caf\'es and bootstrapped means look normal (5{,}000 resamples), the central limit theorem justifies the parametric test. This gave a one-sample $t$-test (A1), Welch's $t$-test with a one-tailed $p$-value fixed in advance (A2), a paired $t$-test (A3), Welch's ANOVA with Games--Howell comparisons (A4), a chi-square test on the $2\times2$ table with a one-tailed $z$-test for the direction (A5), and a Spearman correlation (A6), because the number of ratings is extremely skewed. A7--A9 are OLS regressions, with heteroskedasticity-robust (HC3) standard errors whenever the Breusch--Pagan test rejects constant variance (A9); A10 is a logistic regression whose headline is the average marginal effect. Confidence intervals are 95\% intervals: $t$-based for means and regression coefficients, Wilson-type for proportions, a percentile bootstrap for Spearman's $\rho$, $\eta^2$, Cram\'er's $V$ and the marginal effect (5{,}000 resamples, seed 2026), and a large-sample interval for Cohen's $d$ and $d_z$. Games--Howell adjusts the pairwise $p$-values for multiple comparisons. The ten questions were fixed before looking at the data (see \texttt{hypotheses.md} in the repository); analyses that were not planned are labelled exploratory. All analyses were run in R \RVersion{} with the tidyverse.
+
+\section{Results}
+
+\begin{table}[ht]
+\centering
+\caption{Main results of the ten analyses. Estimates are in the original units (rating points; A5 and A10 in percentage points) with 95\% confidence intervals. The effect size is $d$, $d_z$, $\eta^2$, Cram\'er's $V$, $\rho^2$, $R^2$ or an odds ratio (OR) as stated. $n$ is the number of caf\'es used. $p$-values are one-tailed for A2 and A5 (direction fixed in advance) and two-tailed otherwise.}
+\label{tab:summary}
+\small
+\inputtable{tables/summary.tex}
+\end{table}
+
+\subsection{A1: One-sample test}
+\textit{Question.} Is the mean Google rating different from the benchmark of 4.5 (fixed before the data were examined)? $H_0$: $\mu=4.5$; $H_1$: $\mu\neq4.5$.
+The mean rating of the \AoneN{} caf\'es is \meanci{\AoneEst}{\AoneLo}{\AoneHi}{points} (Figure~\ref{fig:A1}), a difference to 4.5 of \AoneDiff{} points ($d=\AoneEff$), \AoneStat, \AoneP. The interval and test are consistent: the sample mean is slightly above 4.5, but ratings are given in tenths, so a difference of this size is small in practice.
+
+\begin{figure}[ht]
+\centering
+\inputfigure[0.6]{figures/A1_figure.pdf}
+\caption{Google rating (points) of the caf\'es in the sample (grey dots, jittered). The red point with bars is the mean with its 95\% confidence interval; the dashed line is the benchmark of 4.5.}
+\label{fig:A1}
+\end{figure}
+
+\subsection{A2: Two groups}
+\textit{Question.} Do caf\'es with an above-median number of ratings have lower ratings than caf\'es with a below-median number? $H_1$: $\mu_{\text{above}}-\mu_{\text{below}}<0$ (one-tailed, fixed in advance).
+Subtracting below from above, the difference is \diffci{\AtwoEst}{\AtwoLo}{\AtwoHi}{points}{\AtwoEff}{\AtwoEffLo}{\AtwoEffHi}, Welch \AtwoStat, one-tailed \AtwoP{} ($n=\AtwoN$). The direction agrees with the hypothesis, but at $\alpha=.05$ there is no evidence of a difference in this sample, and the interval includes zero. Table~\ref{tab:A2} and Figure~\ref{fig:A2} give the details.
+
+\begin{table}[ht]
+\centering
+\caption{A2: Rating by number of ratings (above vs.\ below the median). Difference is above minus below, in points.}
+\label{tab:A2}
+\inputtable{tables/A2_table.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.6]{figures/A2_figure.pdf}
+\caption{Google rating (points) by group of caf\'es above or below the median number of ratings (dots, jittered). Red points with bars are group means with 95\% confidence intervals.}
+\label{fig:A2}
+\end{figure}
+
+\subsection{A3: Paired comparison}
+\textit{Question.} Does the Adjusted Rating differ from the raw rating? $H_1$: mean difference $\neq0$. The difference is adjusted minus raw.
+The mean within-caf\'e difference is \AthreeEst{} points (95\% CI [\AthreeLo, \AthreeHi]), $d_z=\AthreeEff$ (95\% CI [\AthreeEffLo, \AthreeEffHi]), \AthreeStat, \AthreeP{} ($n=\AthreeN$). There is no evidence that the average changes, which is expected, because the adjustment moves each rating towards the same overall mean. The information is in the spread: the differences are very skewed, and a few caf\'es with very few ratings change by up to about half a point, while most change little (Figure~\ref{fig:A3}).
+
+\begin{table}[ht]
+\centering
+\caption{A3: Paired comparison of adjusted and raw rating (points).}
+\label{tab:A3}
+\inputtable{tables/A3_table.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.7]{figures/A3_figure.pdf}
+\caption{Histogram of the within-caf\'e difference between adjusted and raw rating (points). The red point with bars is the mean difference with its 95\% confidence interval; the dashed line marks zero.}
+\label{fig:A3}
+\end{figure}
+
+\subsection{A4: Three groups}
+\textit{Question.} Does the rating differ between caf\'es with few ($<100$), medium (100--1,000) and many ($>1{,}000$) ratings? $H_0$: all three means are equal.
+Welch's ANOVA gives \AfourStat, \AfourP, with $\eta^2=\AfourEff$ (95\% CI [\AfourEffLo, \AfourEffHi]; $n=\AfourN$). Table~\ref{tab:A4g} gives the group means and Table~\ref{tab:A4p} the Games--Howell comparisons with adjusted $p$-values. The pattern is not a straight line: caf\'es with a medium number of ratings have the highest mean rating, and the few-ratings group, the smallest, has the lowest and most variable ratings (Figure~\ref{fig:groups}).
+
+\begin{table}[ht]
+\centering
+\caption{A4: Rating (points) by number of ratings: group sizes, means with standard deviations, and 95\% confidence intervals for the means.}
+\label{tab:A4g}
+\inputtable{tables/A4_groups.tex}
+\end{table}
+\begin{table}[ht]
+\centering
+\caption{A4: Games--Howell pairwise comparisons (second group minus first group), with 95\% confidence intervals and adjusted $p$-values.}
+\label{tab:A4p}
+\inputtable{tables/A4_pairs.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.7]{figures/A4_figure.pdf}
+\caption{Google rating (points) by group of number of ratings (dots, jittered). Red points with bars are group means with 95\% confidence intervals.}
+\label{fig:groups}
+\end{figure}
+
+\subsection{A5: Two categorical variables}
+\textit{Question.} Are caf\'es with a below-median number of ratings more likely to be top-rated (4.7 or higher)? $H_1$: share(below) $>$ share(above) (one-tailed).
+The share of top-rated caf\'es is higher among caf\'es with a below-median number of ratings, by \AfiveEst{} percentage points (95\% CI [\AfiveLo, \AfiveHi]); \AfiveStat, one-tailed \AfiveP, Cram\'er's $V=\AfiveEff$ (95\% CI [\AfiveEffLo, \AfiveEffHi]). The smallest expected count is \AfiveMinExp, so the chi-square test is appropriate. The interval is wide, so the size of the gap is uncertain (Table~\ref{tab:A5}, Figure~\ref{fig:A5}).
+
+\begin{table}[ht]
+\centering
+\caption{A5: Top-rated caf\'es (rating 4.7 or higher) by number of ratings.}
+\label{tab:A5}
+\inputtable{tables/A5_table.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.6]{figures/A5_figure.pdf}
+\caption{Share of top-rated caf\'es (\%) among caf\'es with a below- and an above-median number of ratings. Red points with bars are the shares with 95\% confidence intervals.}
+\label{fig:A5}
+\end{figure}
+
+\subsection{A6: Correlation}
+\textit{Question.} Is the rating correlated with the number of ratings? $H_0$: $\rho=0$.
+Spearman's $\rho=\AsixEst$ (95\% bootstrap CI [\AsixLo, \AsixHi]; $n=\AsixN$), $\rho^2=\AsixEff$, \AsixP. Pearson's $r=\AsixPearson$ (95\% CI [\AsixPearsonLo, \AsixPearsonHi], \AsixPearsonP) and Kendall's $\tau=\AsixKendall$ (\AsixKendallP) are shown in Table~\ref{tab:A6} for comparison. Spearman and Pearson give no clear evidence of a correlation, while Kendall's $\tau$ lies right at the $\alpha=.05$ boundary, so the evidence for a weak negative relation is borderline at best. A rank correlation only detects a steady rise or fall and so cannot see the hump shape suggested in A4. No statement about causes follows.
+
+\begin{table}[ht]
+\centering
+\caption{A6: Correlation between the rating and the number of ratings; Spearman's coefficient is the primary result.}
+\label{tab:A6}
+\inputtable{tables/A6_alternatives.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.75]{figures/A6_figure.pdf}
+\caption{Google rating (points) against the number of ratings (log scale). The red line is a LOESS smoother with its 95\% band.}
+\label{fig:A6}
+\end{figure}
+
+\subsection{A7: Simple regression}
+\textit{Question.} By how many points does the rating change per 1,000 additional ratings? $H_0$: slope $=0$.
+The slope is \AsevenEst{} points per 1,000 ratings (95\% CI [\AsevenLo, \AsevenHi]), \AsevenP, $R^2=\AsevenEff$, $n=\AsevenN$. The Breusch--Pagan test gives $p=\AsevenBP$, so classical standard errors are used. There is no evidence of a linear relation. One caf\'e (Cafe Louvre, 23{,}951 ratings) has very high leverage and Cook's distance (Appendix~\ref{app:diag}). In an exploratory check without it, the slope is \AsevenXEst{} (95\% CI [\AsevenXLo, \AsevenXHi], \AsevenXP), so the conclusion depends on this single caf\'e and should be read as a lead only.
+
+\begin{table}[ht]
+\centering
+\caption{A7: OLS regression of the rating (points) on the number of ratings (thousands).}
+\label{tab:A7}
+\inputtable{tables/A7_table.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.7]{figures/A7_figure.pdf}
+\caption{Google rating (points) against the number of ratings (thousands). The red line is the OLS fit with its 95\% confidence band.}
+\label{fig:A7}
+\end{figure}
+
+\subsection{A8: Multiple regression}
+\textit{Question.} Does the rating differ by caf\'e type once the number of ratings is accounted for, and how much of the unadjusted difference remains? $H_0$: both type coefficients $=0$; reference group: independent caf\'es.
+The joint test of caf\'e type is \AeightStat, \AeightP{} ($n=\AeightN$, $R^2=\AeightEff$). Compared with independent caf\'es, international chains rate \AeightIntEst{} points (95\% CI [\AeightIntLo, \AeightIntHi]) and local chains \AeightLocEst{} points (95\% CI [\AeightLocLo, \AeightLocHi]). Table~\ref{tab:reg} shows the unadjusted and adjusted coefficients, so the change due to the number of ratings can be read directly. The nested $F$-test comparing the model with and without caf\'e type is \AeightNestedF. The slope of the number of ratings is \AeightSlopeSimple{} in the simple model and \AeightSlopeMult{} with caf\'e type added (Table~\ref{tab:A8m}). The largest variance inflation factor is \AeightVIFmax, so collinearity is not a concern. The result for international chains rests on a small group ($n=\NIntl$).
+
+\begin{table}[ht]
+\centering
+\caption{A8: Regression of the rating (points) on caf\'e type and the number of ratings (thousands). The reference group is independent caf\'es. The column ``Unadjusted $b$'' is the type coefficient without the number of ratings in the model.}
+\label{tab:reg}
+\small
+\inputtable{tables/A8_table.tex}
+\end{table}
+\begin{table}[ht]
+\centering
+\caption{A8: Slope of the number of ratings (points per 1,000 ratings) in the simple model and in the model with caf\'e type.}
+\label{tab:A8m}
+\inputtable{tables/A8_models.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.7]{figures/A8_figure.pdf}
+\caption{Google rating (points) by caf\'e type (dots, jittered). Red points with bars are the model-adjusted means at the mean number of ratings, with 95\% confidence intervals.}
+\label{fig:A8}
+\end{figure}
+
+\subsection{A9: Interaction}
+\textit{Question.} Does the relation between the raw and the Adjusted Rating differ between caf\'es with under 100 and with 100 or more ratings? $H_0$: interaction $=0$.
+The slope of the adjusted on the raw rating is \AnineSlopeU{} (95\% CI [\AnineSlopeULo, \AnineSlopeUHi]) for caf\'es with under 100 ratings and \AnineSlopeO{} (95\% CI [\AnineSlopeOLo, \AnineSlopeOHi]) for caf\'es with 100 or more. The interaction is \AnineEst{} (95\% CI [\AnineLo, \AnineHi]), \AnineP{} ($n=\AnineN$, $R^2=\AnineEff$); the nested $F$-test is \AnineNestedF. Because the Breusch--Pagan test rejected constant variance (Breusch--Pagan \AnineBP), robust HC3 standard errors are used. For caf\'es with many ratings the adjusted rating follows the raw rating almost one for one, while for caf\'es with few ratings it is pulled strongly towards the mean. This is how the adjustment is constructed, since the adjusted rating is computed from the raw rating and the number of ratings, so the high $R^2$ and the small $p$-value confirm the construction and carry little inferential meaning.
+
+\begin{table}[ht]
+\centering
+\caption{A9: OLS regression of the adjusted rating on the raw rating, group of number of ratings and their interaction, with robust (HC3) standard errors.}
+\label{tab:A9}
+\small
+\inputtable{tables/A9_table.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.8]{figures/A9_figure.pdf}
+\caption{Adjusted rating against raw rating (points), with fitted lines and 95\% confidence bands for caf\'es with under 100 ratings and with 100 or more. The dashed line is the line of equality.}
+\label{fig:A9}
+\end{figure}
+
+\subsection{A10: Logistic regression}
+\textit{Question.} Does the probability of being top-rated change with each additional 1,000 ratings? The outcome is 1 if the rating is at least 4.7 and 0 otherwise. $H_0$: coefficient $=0$.
+Among \AtenN{} caf\'es, \AtenEvents{} are top-rated. The average marginal effect is \AtenEst{} percentage points per 1,000 ratings (95\% bootstrap CI [\AtenLo, \AtenHi]); \AtenStat, \AtenP. As a check, the odds ratio is \AtenOR{} (95\% CI [\AtenORLo, \AtenORHi]). McFadden's $R^2$ is \AtenEff, so the model explains little of the variation. Because 1,000 ratings is a large step (the median caf\'e has \MedianN{}), the effect is large per step, and the data are very skewed. In an exploratory check without the caf\'e with the most ratings, the marginal effect is \AtenXEst{} percentage points.
+
+\begin{table}[ht]
+\centering
+\caption{A10: Logistic regression of being top-rated (rating 4.7 or higher) on the number of ratings (thousands).}
+\label{tab:A10}
+\inputtable{tables/A10_table.tex}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.7]{figures/A10_figure.pdf}
+\caption{Predicted probability of being top-rated (\%) against the number of ratings (thousands), with the 95\% confidence band; dots show the observed outcomes (0 or 100\%, jittered).}
+\label{fig:A10}
+\end{figure}
+
+\section{Discussion}
+Taken together, the results suggest that in this sample the rating is not a simple function of popularity. Caf\'es with few ratings have lower and more variable ratings, caf\'es with a medium number have the highest, and a straight-line relation between the rating and the number of ratings is weak (A4, A6, A7). Caf\'es with many ratings are less likely to be top-rated (A5, A10), and international chains rate lower than independents even after accounting for the number of ratings (A8). The shrinkage adjustment mainly changes the ratings of caf\'es with few votes (A3, A9), as designed.
+
+The A7 slope without one very large caf\'e and the exploratory checks in A10 were not planned and should be seen as leads. A8 rests on only \NIntl{} international chains, and A9 is nearly deterministic by construction. With ten tests at $\alpha=.05$, some significant results can arise by chance, although the questions were fixed in advance.
+
+The main limits are the following. The sample is a convenience sample collected by students, so we do not know how well it represents all Prague caf\'es. The data are observational, so none of these results shows that more ratings cause a different rating. Caf\'es in the same district are not independent of one another (similar customers, neighbourhood effects), which makes standard errors and $p$-values too optimistic. Google ratings are also self-selected opinions. We therefore write ``in this sample'' throughout and make no claims about all caf\'es.
+
+\appendix
+
+\section{Descriptive statistics}\label{app:desc}
+The output of \texttt{02\_descriptive.R}: $n$, number missing, mean with 95\% confidence interval, standard deviation, median, interquartile range and range for the numeric variables, and counts for the categorical variables.
+
+\begin{table}[ht]
+\centering
+\caption{Descriptive statistics of the numeric variables used. Means are shown with 95\% confidence intervals.}
+\label{tab:desc}
+\small
+\resizebox{\linewidth}{!}{\inputtable{tables/descriptives.tex}}
+\end{table}
+\begin{table}[ht]
+\centering
+\caption{Counts and percentages of the categorical variables and groups used.}
+\label{tab:counts}
+\small
+\inputtable{tables/D_counts.tex}
+\end{table}
+
+\section{Distributions and normality}\label{app:dist}
+The table below summarises, for every variable and group used in a test, the shape of the distribution (skewness, plots), the sample size, whether the central limit theorem applies and the resulting choice of the primary test. The rating and the adjusted rating are left-skewed with a ceiling near 5, and the number of ratings is extremely right-skewed, which is why the correlation in A6 is rank-based.
+
+\begin{table}[ht]
+\centering
+\caption{Distribution checks and the choice of the primary test for each question.}
+\label{tab:dist}
+\scriptsize
+\resizebox{\linewidth}{!}{\inputtable{tables/D_table.tex}}
+\end{table}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.48]{figures/D_rating.pdf}\hfill
+\inputfigure[0.48]{figures/D_n_ratings.pdf}
+\caption{Distributions of the Google rating (points, left) and of the number of ratings (right) for all caf\'es in the analysis dataset.}
+\label{fig:dist}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.48]{figures/D_boot_hist.pdf}\hfill
+\inputfigure[0.48]{figures/D_boot_qq.pdf}
+\caption{Bootstrap check for the central limit theorem: histograms (left) and normal Q--Q plots (right) of 5{,}000 bootstrapped means of the rating, used to judge whether a parametric test is justified.}
+\label{fig:boot}
+\end{figure}
+
+\section{Regression diagnostics}\label{app:diag}
+Residual-versus-fitted plots and normal Q--Q plots of the residuals for the regressions A7--A9. In A7, Cafe Louvre (23{,}951 ratings) has a Cook's distance above 2 and a leverage of about 0.66; the conclusion changes when it is removed (see A7). The variance inflation factors for A8 are in Table~\ref{tab:vif}.
+
+\begin{figure}[ht]
+\centering
+\inputfigure[0.9]{figures/A7_diagnostics.pdf}
+\caption{A7 diagnostics: residuals against fitted values (left) and normal Q--Q plot of the residuals (right).}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.9]{figures/A8_diagnostics.pdf}
+\caption{A8 diagnostics: residuals against fitted values (left) and normal Q--Q plot of the residuals (right).}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\inputfigure[0.9]{figures/A9_diagnostics.pdf}
+\caption{A9 diagnostics: residuals against fitted values (left) and normal Q--Q plot of the residuals (right).}
+\end{figure}
+\begin{table}[ht]
+\centering
+\caption{Variance inflation factors for the predictors of the A8 model.}
+\label{tab:vif}
+\inputtable{tables/A8_vif.tex}
+\end{table}
+
+\section{Alternative tests and robustness}\label{app:robust}
+Alternative estimates for A6 (Pearson and Kendall next to Spearman; Kendall's $p$ is borderline) are in Table~\ref{tab:A6}, and the models with and without caf\'e type in Table~\ref{tab:A8m}. The exploratory checks without the caf\'e with the most ratings (A7, A10) are reported in the text of the corresponding sections and are not planned analyses.
+
+\section{Reproducibility}\label{app:repro}
+Repository: \url{\RepoURL}. The scripts are \texttt{analysis/01\_cleaning.R} (raw file to \texttt{analysis/dataset.csv}), \texttt{analysis/02\_descriptive.R} (descriptive statistics and distribution checks) and \texttt{analysis/03\_analysis.R} (tests A1--A10, tables and figures); they run in this order from the project folder. R version \RVersion{}, tidyverse. All bootstrap procedures use \texttt{set.seed(2026)}.
+
+\end{document}

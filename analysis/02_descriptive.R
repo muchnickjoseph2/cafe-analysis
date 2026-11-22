@@ -289,3 +289,29 @@ counts_tex <- c(
   "\\bottomrule",
   "\\end{tabular}")
 writeLines(counts_tex, "report/tables/D_counts.tex")
+
+# ------------------------------------------------------------
+# Full descriptive table for the report: n, missing, mean with 95% CI,
+# SD, median, IQR, range  ->  report/tables/descriptives.tex
+# ------------------------------------------------------------
+desc_raw <- read_csv("analysis/dataset.csv", show_col_types = FALSE)
+desc_row <- function(x, label, d = 2) {
+  n <- sum(!is.na(x)); m <- mean(x, na.rm = TRUE); s <- sd(x, na.rm = TRUE)
+  h <- qt(.975, n - 1) * s / sqrt(n)
+  f <- function(v) sprintf(paste0("%.", d, "f"), v)
+  tibble(Variable = label, n = n, Missing = sum(is.na(x)),
+         `Mean [95\\% CI]` = paste0(f(m), " [", f(m - h), ", ", f(m + h), "]"),
+         SD = f(s), Median = f(median(x, na.rm = TRUE)), IQR = f(IQR(x, na.rm = TRUE)),
+         Range = paste0(f(min(x, na.rm = TRUE)), "--", f(max(x, na.rm = TRUE))))
+}
+desc_tab <- bind_rows(
+  desc_row(desc_raw$rating,     "Rating (points)"),
+  desc_row(desc_raw$adj_rating, "Adjusted rating (points)"),
+  desc_row(desc_raw$n_ratings,  "Number of ratings", 0),
+  desc_row(desc_raw$ratings_k,  "Ratings (thousands)", 3)
+)
+desc_lines <- c("\\begin{tabular}{lrrlrrrl}", "\\toprule",
+                paste0(paste(names(desc_tab), collapse = " & "), " \\\\"), "\\midrule",
+                apply(desc_tab, 1, function(r) paste0(paste(r, collapse = " & "), " \\\\")),
+                "\\bottomrule", "\\end{tabular}")
+writeLines(desc_lines, "report/tables/descriptives.tex")

@@ -520,3 +520,180 @@ a10_fig <- ggplot(nd10, aes(ratings_k, 100 * fit)) +
   labs(x = "Number of Google ratings (thousands)",
        y = "Probability of being top-rated (4.7 or higher), %")
 ggsave("report/figures/A10_figure.pdf", a10_fig, width = 6, height = 4)
+
+# ============================================================
+# EXTRAS for the report (the lecturer's template asks for these)
+#  - effect sizes with 95% CIs (A2 d, A3 d_z, A4 eta^2, A5 Cramer's V)
+#  - Pearson r next to Spearman (A6), VIFs and nested F tests (A8, A9)
+#  - tables/summary.tex (one row per analysis) and tables/numbers.tex
+#    (LaTeX macros so that the numbers in the report text come from R)
+# Effect-size CIs: d and d_z use the large-sample standard error;
+# eta^2 and Cramer's V use percentile bootstrap (5,000 resamples, seed 2026).
+# ============================================================
+nums <- character()
+def  <- function(name, value) nums <<- c(nums, sprintf("\\newcommand{\\%s}{%s}", name, value))
+pv   <- function(p) ifelse(p < .001, "\\plt{.001}", paste0("\\pval{", fmt_p(p), "}"))
+z975 <- qnorm(.975)
+
+# ---- A1 ----
+a1_d <- (a1$mean - 4.5) / a1$sd
+def("AoneN", a1$n);  def("AoneEst", fmt(a1$mean)); def("AoneLo", fmt(a1$lo)); def("AoneHi", fmt(a1$hi))
+def("AoneDiff", fmt(a1$mean - 4.5)); def("AoneEff", fmt(a1_d)); def("AoneStat", paste0("\\tstat{", a1$df, "}{", fmt(a1$t), "}")); def("AoneP", pv(a1$p))
+
+# ---- A2: Cohen d with CI ----
+a2_se_d <- sqrt((n1 + n2) / (n1 * n2) + (diff2 / sp)^2 / (2 * (n1 + n2)))
+a2_d    <- diff2 / sp
+def("AtwoN", n1 + n2); def("AtwoEst", fmt(diff2))
+def("AtwoLo", fmt(a2_two$conf.int[1])); def("AtwoHi", fmt(a2_two$conf.int[2]))
+def("AtwoEff", fmt(a2_d)); def("AtwoEffLo", fmt(a2_d - z975 * a2_se_d)); def("AtwoEffHi", fmt(a2_d + z975 * a2_se_d))
+def("AtwoStat", paste0("\\tstat{", fmt(a2_one$parameter, 1), "}{", fmt(a2_one$statistic), "}")); def("AtwoP", pv(a2_one$p.value))
+
+# ---- A3: d_z with CI ----
+n3 <- nrow(a3); a3_se_dz <- sqrt(1 / n3 + dz^2 / (2 * n3))
+def("AthreeN", n3); def("AthreeEst", fmt(mean(a3_d), 3))
+def("AthreeLo", fmt(a3_tt$conf.int[1], 3)); def("AthreeHi", fmt(a3_tt$conf.int[2], 3))
+def("AthreeEff", fmt(dz)); def("AthreeEffLo", fmt(dz - z975 * a3_se_dz)); def("AthreeEffHi", fmt(dz + z975 * a3_se_dz))
+def("AthreeStat", paste0("\\tstat{", a3_tt$parameter, "}{", fmt(a3_tt$statistic), "}")); def("AthreeP", pv(a3_tt$p.value))
+
+# ---- A4: eta^2 with bootstrap CI ----
+eta2 <- function(d) { ss <- anova(lm(rating ~ n_group_3, data = d))$`Sum Sq`; ss[1] / sum(ss) }
+a4_eta <- eta2(a4)
+set.seed(2026)
+a4_eta_b <- replicate(5000, eta2(a4[sample(nrow(a4), replace = TRUE), ]))
+a4_eta_ci <- unname(quantile(a4_eta_b, c(.025, .975)))
+def("AfourN", nrow(a4))
+def("AfourStat", paste0("\\Fstat{", fmt(a4_w$parameter[1], 0), "}{", fmt(a4_w$parameter[2], 1), "}{", fmt(a4_w$statistic), "}"))
+def("AfourP", pv(a4_w$p.value))
+def("AfourEff", fmt(a4_eta)); def("AfourEffLo", fmt(a4_eta_ci[1])); def("AfourEffHi", fmt(a4_eta_ci[2]))
+
+# ---- A5: Cramer's V with bootstrap CI ----
+cv <- function(d) {
+  t <- table(d$n_group_median, d$top_rated)
+  if (any(dim(t) < 2) || any(rowSums(t) == 0)) return(NA_real_)
+  sqrt(unname(suppressWarnings(chisq.test(t, correct = FALSE)$statistic)) / sum(t))
+}
+set.seed(2026)
+a5_V_b  <- replicate(5000, cv(a5[sample(nrow(a5), replace = TRUE), ]))
+a5_V_ci <- unname(quantile(a5_V_b, c(.025, .975), na.rm = TRUE))
+def("AfiveN", sum(tab5)); def("AfiveEst", fmt(100 * (x_b / n_b - x_a / n_a), 1))
+def("AfiveLo", fmt(100 * a5_two$conf.int[1], 1)); def("AfiveHi", fmt(100 * a5_two$conf.int[2], 1))
+def("AfiveEff", fmt(a5_V)); def("AfiveEffLo", fmt(a5_V_ci[1])); def("AfiveEffHi", fmt(a5_V_ci[2]))
+def("AfiveStat", paste0("\\chisqstat{1}{", sum(tab5), "}{", fmt(a5_chi$statistic), "}")); def("AfiveP", pv(a5_one$p.value))
+def("AfiveMinExp", fmt(a5_min, 1))
+
+# ---- A6: Spearman (primary) next to Pearson and Kendall ----
+a6_pe <- cor.test(a6$n_ratings, a6$rating, method = "pearson")
+a6_ke <- cor.test(a6$n_ratings, a6$rating, method = "kendall", exact = FALSE)
+def("AsixN", nrow(a6)); def("AsixEst", fmt(rho)); def("AsixLo", fmt(a6_ci[1])); def("AsixHi", fmt(a6_ci[2]))
+def("AsixEff", fmt(rho^2, 3)); def("AsixP", pv(a6_ct$p.value))
+def("AsixPearson", fmt(unname(a6_pe$estimate))); def("AsixPearsonLo", fmt(a6_pe$conf.int[1])); def("AsixPearsonHi", fmt(a6_pe$conf.int[2]))
+def("AsixPearsonP", pv(a6_pe$p.value)); def("AsixKendall", fmt(unname(a6_ke$estimate))); def("AsixKendallP", pv(a6_ke$p.value))
+write_tex_table(tibble(Coefficient = c("Spearman $\\rho$ (primary)", "Pearson $r$", "Kendall $\\tau$"),
+                       Estimate = fmt(c(rho, unname(a6_pe$estimate), unname(a6_ke$estimate))),
+                       `95% CI` = c(ci_txt(a6_ci[1], a6_ci[2]), ci_txt(a6_pe$conf.int[1], a6_pe$conf.int[2]), ""),
+                       `$p$` = fmt_p(c(a6_ct$p.value, a6_pe$p.value, a6_ke$p.value))),
+                "A6_alternatives.tex", align = "lrrr")
+
+# ---- A7 ----
+ct7 <- coef_table(m7, a7_V)[2, ]
+def("AsevenN", nobs(m7)); def("AsevenEst", fmt(ct7$est, 3)); def("AsevenLo", fmt(ct7$lo, 3)); def("AsevenHi", fmt(ct7$hi, 3))
+def("AsevenEff", fmt(summary(m7)$r.squared, 3)); def("AsevenP", pv(ct7$p)); def("AsevenBP", fmt_p(a7_bp))
+ct7x <- coef_table(m7x, vcov(m7x))[2, ]
+def("AsevenXEst", fmt(ct7x$est, 3)); def("AsevenXLo", fmt(ct7x$lo, 3)); def("AsevenXHi", fmt(ct7x$hi, 3)); def("AsevenXP", pv(ct7x$p))
+
+# ---- A8: simple vs multiple model, nested F, VIFs ----
+m8s   <- lm(rating ~ ratings_k, data = a8)                     # slope of interest, same cafes
+a8_nf <- anova(m8s, m8)                                         # nested F (classical): does cafe type add anything?
+Xv    <- model.matrix(m8)[, -1, drop = FALSE]
+a8_vif <- setNames(diag(solve(cor(Xv))), colnames(Xv))
+print(round(a8_vif, 2)); print(a8_nf)
+ct8 <- coef_table(m8, a8_V)
+def("AeightN", nobs(m8))
+def("AeightStat", paste0("\\Fstat{", length(idx), "}{", df.residual(m8), "}{", fmt(a8_F), "}")); def("AeightP", pv(a8_p))
+def("AeightIntEst", fmt(ct8$est[ct8$term == "cafe_typeInternational Chain"], 3))
+def("AeightIntLo",  fmt(ct8$lo[ct8$term  == "cafe_typeInternational Chain"], 3))
+def("AeightIntHi",  fmt(ct8$hi[ct8$term  == "cafe_typeInternational Chain"], 3))
+def("AeightLocEst", fmt(ct8$est[ct8$term == "cafe_typeLocal Chain"], 3))
+def("AeightLocLo",  fmt(ct8$lo[ct8$term  == "cafe_typeLocal Chain"], 3))
+def("AeightLocHi",  fmt(ct8$hi[ct8$term  == "cafe_typeLocal Chain"], 3))
+def("AeightSlopeSimple", fmt(coef(m8s)[["ratings_k"]], 3)); def("AeightSlopeMult", fmt(coef(m8)[["ratings_k"]], 3))
+def("AeightNestedF", paste0("\\Fstat{", a8_nf$Df[2], "}{", a8_nf$Res.Df[2], "}{", fmt(a8_nf$F[2]), "}, ", pv(a8_nf$`Pr(>F)`[2])))
+def("AeightVIFmax", fmt(max(a8_vif), 2)); def("AeightEff", fmt(summary(m8)$r.squared, 3))
+write_tex_table(bind_rows(
+  tibble(Model = "Simple: rating on ratings only", Term = "Ratings (per 1,000)",
+         `$b$` = fmt(coef(m8s)[["ratings_k"]], 3), `$R^2$` = fmt(summary(m8s)$r.squared, 3)),
+  tibble(Model = "Multiple: plus cafe type", Term = "Ratings (per 1,000)",
+         `$b$` = fmt(coef(m8)[["ratings_k"]], 3), `$R^2$` = fmt(summary(m8)$r.squared, 3))),
+  "A8_models.tex", align = "llrr")
+vif_labels <- c("cafe_typeLocal Chain" = "Local chain", "cafe_typeInternational Chain" = "International chain",
+                "ratings_k" = "Ratings (per 1,000)")
+write_tex_table(tibble(Predictor = unname(vif_labels[colnames(Xv)]), VIF = fmt(a8_vif)), "A8_vif.tex", align = "lr")
+
+# ---- A9: nested F for the interaction ----
+m9a   <- lm(adj_rating ~ rating + n_group_2, data = a9)
+a9_nf <- anova(m9a, m9)
+ct9   <- coef_table(m9, a9_V); it9 <- ct9[ct9$term == i_x, ]
+def("AnineN", nobs(m9)); def("AnineEst", fmt(it9$est, 3)); def("AnineLo", fmt(it9$lo, 3)); def("AnineHi", fmt(it9$hi, 3))
+def("AnineEff", fmt(summary(m9)$r.squared, 3)); def("AnineP", pv(it9$p)); def("AnineBP", pv(a9_bp))
+def("AnineNestedF", paste0("\\Fstat{", a9_nf$Df[2], "}{", a9_nf$Res.Df[2], "}{", fmt(a9_nf$F[2]), "}, ", pv(a9_nf$`Pr(>F)`[2])))
+def("AnineSlopeU", fmt(sl_u, 3)); def("AnineSlopeULo", fmt(sl_u - tq * se_u, 3)); def("AnineSlopeUHi", fmt(sl_u + tq * se_u, 3))
+def("AnineSlopeO", fmt(sl_o, 3)); def("AnineSlopeOLo", fmt(sl_o - tq * se_o, 3)); def("AnineSlopeOHi", fmt(sl_o + tq * se_o, 3))
+
+# ---- A10 ----
+def("AtenN", nrow(a10)); def("AtenEvents", sum(a10$top_rated))
+def("AtenEst", fmt(ame_hat, 1)); def("AtenLo", fmt(a10_ci[1], 1)); def("AtenHi", fmt(a10_ci[2], 1))
+def("AtenOR", fmt(exp(b10[["Estimate"]]), 2)); def("AtenORLo", fmt(exp(ci10[1]), 2)); def("AtenORHi", fmt(exp(ci10[2]), 2))
+def("AtenStat", paste0("\\textit{z}\\,=\\,", fmt(b10[["z value"]]))); def("AtenP", pv(b10[["Pr(>|z|)"]]))
+def("AtenEff", fmt(1 - m10$deviance / m10$null.deviance, 3)); def("AtenXEst", fmt(ame(m10x, a10x), 1))
+
+# ---- data description macros (used in the Data section of the report) ----
+def("NCafes", nrow(dat))
+for (v in c("rating", "n_ratings", "adj_rating", "cafe_type")) {
+  def(paste0("Miss", c(rating = "Rating", n_ratings = "Nratings", adj_rating = "Adj", cafe_type = "Type")[[v]]),
+      sum(is.na(dat[[v]])))
+}
+def("MedianN", fmt(median(dat$n_ratings, na.rm = TRUE), 0))
+def("MeanRating", fmt(mean(dat$rating, na.rm = TRUE), 2))
+def("NTopRated", sum(dat$top_rated == 1, na.rm = TRUE))
+def("NFew", sum(a4$n_group_3 == "Few (<100)"))
+def("NMedium", sum(a4$n_group_3 == "Medium (100-1,000)"))
+def("NMany", sum(a4$n_group_3 == "Many (>1,000)"))
+def("NIndep", sum(a8$cafe_type == "Independent"))
+def("NLocal", sum(a8$cafe_type == "Local Chain"))
+def("NIntl", sum(a8$cafe_type == "International Chain"))
+def("RVersion", paste(R.version$major, R.version$minor, sep = "."))
+
+writeLines(nums, "report/tables/numbers.tex")
+
+# ---- summary table: one row per analysis ----
+ci1 <- function(est, lo, hi, d = 2) paste0(fmt(est, d), " ", ci_txt(lo, hi, d))
+summ <- tibble(
+  Analysis = c("A1 one-sample", "A2 two groups", "A3 paired", "A4 three groups", "A5 two categories",
+               "A6 correlation", "A7 simple regression", "A8 multiple regression", "A9 interaction", "A10 logistic"),
+  n = c(a1$n, n1 + n2, n3, nrow(a4), sum(tab5), nrow(a6), nobs(m7), nobs(m8), nobs(m9), nrow(a10)),
+  Estimate = c(ci1(a1$mean, a1$lo, a1$hi),
+               ci1(diff2, a2_two$conf.int[1], a2_two$conf.int[2]),
+               ci1(mean(a3_d), a3_tt$conf.int[1], a3_tt$conf.int[2], 3),
+               paste0("Welch $F$ = ", fmt(a4_w$statistic)),
+               ci1(100 * (x_b / n_b - x_a / n_a), 100 * a5_two$conf.int[1], 100 * a5_two$conf.int[2], 1),
+               ci1(rho, a6_ci[1], a6_ci[2]),
+               ci1(ct7$est, ct7$lo, ct7$hi, 3),
+               ci1(ct8$est[ct8$term == "cafe_typeInternational Chain"], ct8$lo[ct8$term == "cafe_typeInternational Chain"],
+                   ct8$hi[ct8$term == "cafe_typeInternational Chain"], 3),
+               ci1(it9$est, it9$lo, it9$hi, 3),
+               ci1(ame_hat, a10_ci[1], a10_ci[2], 1)),
+  `Effect size` = c(paste0("$d$ = ", fmt(a1_d)),
+                    paste0("$d$ = ", ci1(a2_d, a2_d - z975 * a2_se_d, a2_d + z975 * a2_se_d)),
+                    paste0("$d_z$ = ", ci1(dz, dz - z975 * a3_se_dz, dz + z975 * a3_se_dz)),
+                    paste0("$\\eta^2$ = ", ci1(a4_eta, a4_eta_ci[1], a4_eta_ci[2])),
+                    paste0("$V$ = ", ci1(a5_V, a5_V_ci[1], a5_V_ci[2])),
+                    paste0("$\\rho^2$ = ", fmt(rho^2, 3)),
+                    paste0("$R^2$ = ", fmt(summary(m7)$r.squared, 3)),
+                    paste0("$R^2$ = ", fmt(summary(m8)$r.squared, 3)),
+                    paste0("$R^2$ = ", fmt(summary(m9)$r.squared, 3)),
+                    paste0("OR = ", ci1(exp(b10[["Estimate"]]), exp(ci10[1]), exp(ci10[2])))),
+  `$p$` = fmt_p(c(a1$p, a2_one$p.value, a3_tt$p.value, a4_w$p.value, a5_one$p.value,
+                  a6_ct$p.value, ct7$p, a8_p, it9$p, b10[["Pr(>|z|)"]]))
+)
+write_tex_table(summ, "summary.tex", align = "lrllr")
+cat("\nDone. All tables are in report/tables and all figures in report/figures.\n")
