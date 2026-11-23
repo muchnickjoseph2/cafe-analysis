@@ -101,15 +101,18 @@
 \begin{frame}{A4: Few, medium or many ratings?}
 \small\textit{\textbf{Question:} Does the Google rating differ between cafés with few (under 100), medium (100--1,000) and many (over 1,000) ratings, and if so, how?}\par\medskip
 \begin{columns}[T]
-\column{0.5\textwidth}\fig{A4_figure.pdf}
-\column{0.48\textwidth}
+\column{0.38\textwidth}\fig{A4_figure.pdf}
+\column{0.60\textwidth}
 \begin{itemize}
-  \item \textbf{Test:} Welch's ANOVA, Games--Howell post hoc
+  \item \textbf{Test:} Welch's ANOVA, then Games--Howell post hoc
   \item \AfourStat, \AfourP, $\eta^2=\AfourEff$, \CI{\AfourEffLo}{\AfourEffHi} ($n=\AfourN$)
   \item Means: few 4.32, medium 4.62, many 4.48 points
-  \item \textbf{Takeaway:} Medium-sized cafés rate highest, not a straight line.
+  \item \textbf{Takeaway:} medium-sized cafés rate highest, not a straight line.
 \end{itemize}
 \end{columns}
+\vspace{2mm}
+{\scriptsize\textbf{Post hoc (Games--Howell), difference in points, adjusted $p$:}\par\smallskip
+\centering\resizebox{0.85\linewidth}{!}{\input{../report/tables/A4_pairs.tex}}\par}
 \end{frame}
 
 \begin{frame}{A5: Top-rated (4.7+) by below/above median number of ratings}
