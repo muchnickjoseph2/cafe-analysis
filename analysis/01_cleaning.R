@@ -68,6 +68,28 @@ cafes %>%
          `Rating (Google)`, `Number of ratings (Google)`) %>%
   print(n = Inf, width = Inf)
 
+# ---- 7b. Duplicates the address check misses ----
+# The same cafe can be entered with a different spelling and a slightly different
+# pin (for example "Cafe Milani" / "Caffe Milani"). Two entries with exactly the
+# same number of Google ratings and pins within 50 m of each other are the same cafe.
+near_pairs <- function(d) {
+  a <- d %>%
+    transmute(sheet_row, cafe_name = `Cafe name`, Name,
+              n_ratings = `Number of ratings (Google)`,
+              lat = as.numeric(Latitude), lon = as.numeric(Longitude)) %>%
+    filter(!is.na(n_ratings))
+  inner_join(a, a, by = "n_ratings", suffix = c("_1", "_2")) %>%
+    filter(sheet_row_1 < sheet_row_2) %>%
+    mutate(dist_m = sqrt(((lat_1 - lat_2) * 111000)^2 +
+                           ((lon_1 - lon_2) * 111000 * cos(lat_1 * pi / 180))^2)) %>%
+    filter(dist_m < 50) %>%
+    select(n_ratings, sheet_row_1, cafe_name_1, Name_1,
+           sheet_row_2, cafe_name_2, Name_2, dist_m) %>%
+    arrange(sheet_row_1)
+}
+cafes <- cafes %>% mutate(sheet_row = row_number())
+near_pairs(cafes) %>% print(n = Inf, width = Inf)
+
 # ---- 8. The odd values ----
 cafes %>%
   filter(`Number of ratings (Google)` == 0 | `Rating (Google)` == 5) %>%
@@ -76,22 +98,25 @@ cafes %>%
 cafes %>% filter(is.na(`Cafe Type`)) %>% select(`Cafe name`, Name)
 
 # ---- 9. Remove duplicate cafes (decision) ----
-# The same cafe was recorded twice by different students (same address, almost
-# identical ratings). Rule: keep the first row in the sheet.
+# The same cafe was recorded twice by different students (same address or same
+# pin, identical or almost identical ratings). Rule: keep the first row in the sheet.
+# Found by address (step 7) and by identical rating count + pin within 50 m (step 7b).
 # Rows with the same address but different cafes (The Cup / Atomic matcha,
 # Cafe Slavia / forbina, Rodinna farma / Kin & K Bakery) are NOT removed.
 cafes <- cafes %>% mutate(sheet_row = row_number())
 
-dup_rows <- c(97, 144, 200, 103, 142, 198, 197, 158, 159)
+dup_rows <- c(97, 144, 200, 103, 142, 198, 197, 158, 159,   # same address (step 7)
+              131, 196)                                     # same ratings and pin (step 7b)
 
 cafes %>%
   filter(sheet_row %in% dup_rows) %>%
-  select(sheet_row, `Cafe name`, Name)        # check: these are the 9 second entries
+  select(sheet_row, `Cafe name`, Name)        # check: these are the 11 second entries
 
 cafes_nodup <- cafes %>% filter(!sheet_row %in% dup_rows)
-nrow(cafes); nrow(cafes_nodup)                # 200 -> 191
+nrow(cafes); nrow(cafes_nodup)                # 200 -> 189
 
-# ---- 10. Leftover check: pins within about 10 m of each other ----
+# ---- 10. Leftover check: no duplicates may remain ----
+# Same pin (about 10 m) ...
 cafes_nodup %>%
   mutate(pin = paste(round(as.numeric(Latitude), 4),
                      round(as.numeric(Longitude), 4))) %>%
@@ -102,6 +127,8 @@ cafes_nodup %>%
   select(sheet_row, `Cafe name`, Name, `Rating (Google)`,
          `Number of ratings (Google)`) %>%
   print(n = Inf, width = Inf)
+# ... and identical rating count within 50 m (this must print 0 rows)
+near_pairs(cafes_nodup) %>% print(n = Inf, width = Inf)
 
 # ---- 11. Build the clean variables (cafes_nodup keeps the originals) ----
 cafes_clean <- cafes_nodup %>%

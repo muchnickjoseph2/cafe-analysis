@@ -39,7 +39,7 @@
 \begin{frame}{Question and data}
 \begin{itemize}
   \item \textbf{Question:} how is a café's Google rating related to its number of ratings, its type, and a shrinkage-adjusted rating?
-  \item \textbf{Data:} student-collected convenience sample, \NCafes{} cafés after cleaning (299 raw rows, 99 empty rows and 9 duplicates removed)
+  \item \textbf{Data:} student-collected convenience sample, \NCafes{} cafés after cleaning (299 raw rows, 99 empty rows and 11 duplicates removed)
   \item \textbf{Outcome:} Google rating in points (mean \MeanRating{}; median number of ratings \MedianN{})
   \item \textbf{Adjusted rating:} $(nR + 50C)/(n + 50)$ pulls ratings with few votes towards the mean $C$
   \item \textbf{Ten planned questions} (A1--A10), hypotheses written before looking at the data
@@ -101,18 +101,23 @@
 \begin{frame}{A4: Few, medium or many ratings?}
 \small\textit{\textbf{Question:} Does the Google rating differ between cafés with few (under 100), medium (100--1,000) and many (over 1,000) ratings, and if so, how?}\par\medskip
 \begin{columns}[T]
-\column{0.38\textwidth}\fig{A4_figure.pdf}
-\column{0.60\textwidth}
+\column{0.30\textwidth}\fig{A4_figure.pdf}
+\column{0.68\textwidth}
 \begin{itemize}
   \item \textbf{Test:} Welch's ANOVA, then Games--Howell post hoc
   \item \AfourStat, \AfourP, $\eta^2=\AfourEff$, \CI{\AfourEffLo}{\AfourEffHi} ($n=\AfourN$)
-  \item Means: few 4.32, medium 4.62, many 4.48 points
   \item \textbf{Takeaway:} medium-sized cafés rate highest, not a straight line.
 \end{itemize}
 \end{columns}
-\vspace{2mm}
-{\scriptsize\textbf{Post hoc (Games--Howell), difference in points, adjusted $p$:}\par\smallskip
-\centering\resizebox{0.85\linewidth}{!}{\input{../report/tables/A4_pairs.tex}}\par}
+\vspace{1mm}
+\begin{columns}[T]
+\column{0.40\textwidth}
+{\scriptsize\textbf{Group means (points)}\par\smallskip
+\resizebox{\linewidth}{!}{\input{../report/tables/A4_groups.tex}}}
+\column{0.58\textwidth}
+{\scriptsize\textbf{Post hoc (Games--Howell): difference in points}\par\smallskip
+\resizebox{\linewidth}{!}{\input{../report/tables/A4_pairs.tex}}}
+\end{columns}
 \end{frame}
 
 \begin{frame}{A5: Top-rated (4.7+) by below/above median number of ratings}
@@ -122,7 +127,6 @@
 \column{0.56\textwidth}
 \begin{itemize}
   \item \textbf{Test:} chi-square on the $2\times2$ table, one-tailed
-  \item Top-rated: 45.2\% (below median) vs.\ 28.7\% (above)
   \item Difference \AfiveEst{} pp, \CI{\AfiveLo}{\AfiveHi}; Cram\'er's $V=\AfiveEff$, \CI{\AfiveEffLo}{\AfiveEffHi}
   \item \AfiveStat, \AfiveP
   \item \textbf{Takeaway:} Fewer ratings, more often top-rated.

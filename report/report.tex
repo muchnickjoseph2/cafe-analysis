@@ -18,7 +18,7 @@
 \newcommand{\PartnerName}{Ryan David}
 \newcommand{\RawRows}{299}      % rows in raw_data.csv
 \newcommand{\EmptyRows}{99}     % empty rows removed
-\newcommand{\DupRows}{9}        % duplicate rows removed
+\newcommand{\DupRows}{11}        % duplicate rows removed
 \newcommand{\RepoURL}{https://github.com/muchnickjoseph2/cafe-analysis}
 
 \title{\textbf{Do more Google ratings mean better ratings? Evidence from Prague caf\'es}}
@@ -142,7 +142,7 @@ The share of top-rated caf\'es is higher among caf\'es with a below-median numbe
 
 \subsection{A6: Correlation}
 \textit{Question.} Is the rating correlated with the number of ratings? $H_0$: $\rho=0$.
-Spearman's $\rho=\AsixEst$ (95\% bootstrap CI [\AsixLo, \AsixHi]; $n=\AsixN$), $\rho^2=\AsixEff$, \AsixP. Pearson's $r=\AsixPearson$ (95\% CI [\AsixPearsonLo, \AsixPearsonHi], \AsixPearsonP) and Kendall's $\tau=\AsixKendall$ (\AsixKendallP) are shown in Table~\ref{tab:A6} for comparison. Spearman and Pearson give no clear evidence of a correlation, while Kendall's $\tau$ lies right at the $\alpha=.05$ boundary, so the evidence for a weak negative relation is borderline at best. A rank correlation only detects a steady rise or fall and so cannot see the hump shape suggested in A4. No statement about causes follows.
+Spearman's $\rho=\AsixEst$ (95\% bootstrap CI [\AsixLo, \AsixHi]; $n=\AsixN$), $\rho^2=\AsixEff$, \AsixP. Pearson's $r=\AsixPearson$ (95\% CI [\AsixPearsonLo, \AsixPearsonHi], \AsixPearsonP) and Kendall's $\tau=\AsixKendall$ (\AsixKendallP) are shown in Table~\ref{tab:A6} for comparison. All three coefficients point to at most a weak negative relation, and none of them is significant at $\alpha=.05$. A rank correlation only detects a steady rise or fall and so cannot see the hump shape suggested in A4. No statement about causes follows.
 
 \begin{table}[H]
 \centering
@@ -159,7 +159,7 @@ Spearman's $\rho=\AsixEst$ (95\% bootstrap CI [\AsixLo, \AsixHi]; $n=\AsixN$), $
 
 \subsection{A7: Simple regression}
 \textit{Question.} By how many points does the rating change per 1,000 additional ratings? $H_0$: slope $=0$.
-The slope is \AsevenEst{} points per 1,000 ratings (95\% CI [\AsevenLo, \AsevenHi]), \AsevenP, $R^2=\AsevenEff$, $n=\AsevenN$. The Breusch--Pagan test gives $p=\AsevenBP$, so classical standard errors are used. There is no evidence of a linear relation. One caf\'e (Cafe Louvre, 23{,}951 ratings) has very high leverage and Cook's distance (Appendix~\ref{app:diag}). In an exploratory check without it, the slope is \AsevenXEst{} (95\% CI [\AsevenXLo, \AsevenXHi], \AsevenXP), so the conclusion depends on this single caf\'e and should be read as a lead only.
+The slope is \AsevenEst{} points per 1,000 ratings (95\% CI [\AsevenLo, \AsevenHi]), \AsevenP, $R^2=\AsevenEff$, $n=\AsevenN$. The Breusch--Pagan test gives $p=\AsevenBP$, so classical standard errors are used. There is no evidence of a linear relation. One caf\'e (Cafe Louvre, 23{,}951 ratings) has very high leverage and Cook's distance (Appendix~\ref{app:diag}). In an exploratory check without it, the slope is larger, \AsevenXEst{} (95\% CI [\AsevenXLo, \AsevenXHi], \AsevenXP): the size of the slope depends on this single caf\'e, although there is still no clear evidence of a slope at $\alpha=.05$. This check was not planned and is a lead only.
 
 \begin{table}[H]
 \centering
@@ -286,7 +286,7 @@ The table below summarises, for every variable and group used in a test, the sha
 \end{figure}
 
 \section{Regression diagnostics}\label{app:diag}
-Residual-versus-fitted plots and normal Q--Q plots of the residuals for the regressions A7--A9. In A7, Cafe Louvre (23{,}951 ratings) has a Cook's distance above 2 and a leverage of about 0.66; the conclusion changes when it is removed (see A7). The variance inflation factors for A8 are in Table~\ref{tab:vif}.
+Residual-versus-fitted plots and normal Q--Q plots of the residuals for the regressions A7--A9. In A7, Cafe Louvre (23{,}951 ratings) has a very high Cook's distance and leverage; the slope becomes larger when it is removed, but is still not significant (see A7). The variance inflation factors for A8 are in Table~\ref{tab:vif}.
 
 \begin{figure}[H]
 \centering
@@ -311,7 +311,7 @@ Residual-versus-fitted plots and normal Q--Q plots of the residuals for the regr
 \end{table}
 
 \section{Alternative tests and robustness}\label{app:robust}
-Alternative estimates for A6 (Pearson and Kendall next to Spearman; Kendall's $p$ is borderline) are in Table~\ref{tab:A6}, and the models with and without caf\'e type in Table~\ref{tab:A8m}. The exploratory checks without the caf\'e with the most ratings (A7, A10) are reported in the text of the corresponding sections and are not planned analyses.
+Alternative estimates for A6 (Pearson and Kendall next to Spearman) are in Table~\ref{tab:A6}, and the models with and without caf\'e type in Table~\ref{tab:A8m}. The exploratory checks without the caf\'e with the most ratings (A7, A10) are reported in the text of the corresponding sections and are not planned analyses.
 
 \section{Reproducibility}\label{app:repro}
 Repository: \url{\RepoURL}. The scripts are \texttt{01\_cleaning.R} (raw file to \texttt{dataset.csv}), \texttt{02\_descriptive.R} (descriptive statistics and distribution checks) and \texttt{03\_analysis.R} (tests A1--A10, tables and figures), all in the folder \texttt{analysis/}; they run in this order from the project folder. R version \RVersion{}, tidyverse. All bootstrap procedures use \texttt{set.seed(2026)}.

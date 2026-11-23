@@ -1,192 +1,190 @@
 sheet_row,cafe_name,district,cafe_type,rating,n_ratings,adj_rating,ratings_k,n_group_median,n_group_3,n_group_2,top_rated
-1,Cappuccineria,Prague 1,Local Chain,4,363,4.065941991654217,0.363,Below median,"Medium (100-1,000)",100 or more,0
-2,Starbucks Reserve,Prague 1,International Chain,4.4,1738,4.404045885096863,1.738,Above median,"Many (>1,000)",100 or more,0
-3,Lost Cafe and Bar,Prague 1,Independent,4.6,158,4.586702127659574,0.158,Below median,"Medium (100-1,000)",100 or more,0
-4,Mama coffee,Prague 1,Local Chain,4.4,2671,4.402658597042702,2.671,Above median,"Many (>1,000)",100 or more,0
-5,Cafe Neustadt,Prague 2,Independent,4.2,1938,4.208669035489533,1.938,Above median,"Many (>1,000)",100 or more,0
-6,Choco Cafe,Prague 1,Local Chain,4.7,3362,4.697723928063655,3.362,Above median,"Many (>1,000)",100 or more,1
-7,Cafe Bar Ypsilon,Prague 1,Independent,4.6,47,4.57148497477517,0.047,Below median,Few (<100),Under 100,0
-8,Cafe KavOkno Ostrovini,Prague 1,Independent,4.8,277,4.760960374780402,0.277,Below median,"Medium (100-1,000)",100 or more,1
-9,Cafe Louvre,Prague 1,Independent,4.5,23951,4.500093081227998,23.951,Above median,"Many (>1,000)",100 or more,0
-10,Cafe Slavia,Prague 1,Independent,4.3,9395,4.301295293017808,9.395,Above median,"Many (>1,000)",100 or more,0
-11,Standard Cafe,Prague 1,Independent,4.6,952,4.5972395634263385,0.952,Above median,"Medium (100-1,000)",100 or more,0
-12,Hues Kafe and Bistro,Prague 1,Independent,4.9,468,4.865702784851722,0.468,Above median,"Medium (100-1,000)",100 or more,1
-13,Dorado Coffee,Prague 1,Independent,4.7,437,4.684053475468566,0.437,Below median,"Medium (100-1,000)",100 or more,1
-14,Klub Betlemska,Prague 1,Independent,4.7,167,4.664212177664477,0.167,Below median,"Medium (100-1,000)",100 or more,1
-15,Myslis,Prague 1,Independent,4.8,713,4.783268732048744,0.713,Above median,"Medium (100-1,000)",100 or more,1
-16,Cafe Platyz,Prague 1,Independent,4.5,3213,4.500684659072385,3.213,Above median,"Many (>1,000)",100 or more,0
-17,Alfredo Caffe,Prague 1,Independent,4.6,1022,4.597419815814543,1.022,Above median,"Many (>1,000)",100 or more,0
-18,Koverna Koici Praha (Cat Cafe),Prague 1,Independent,4.4,3540,4.402015053635987,3.54,Above median,"Many (>1,000)",100 or more,0
-19,Staroprazska Galerie,Prague 1,Independent,4.5,278,4.506811105345096,0.278,Below median,"Medium (100-1,000)",100 or more,0
-20,Atlas Cafe,Prague 8,Independent,4.5,197,4.509044706693083,0.197,Below median,"Medium (100-1,000)",100 or more,0
-21,Savaaca,Prague 7,Independent,4.9,117,4.793617021276596,0.117,Below median,"Medium (100-1,000)",100 or more,1
-22,The Miners Coffee Komunardů,Prague 7,Local Chain,4.9,258,4.8423183199778945,0.258,Below median,"Medium (100-1,000)",100 or more,1
-23,Libeřské lahůdky Holešovice,Prague 7,Local Chain,4.7,265,4.675346166835529,0.265,Below median,"Medium (100-1,000)",100 or more,1
-24,Phill's Corner,Prague 7,Independent,4.3,1020,4.311433684629151,1.02,Above median,"Many (>1,000)",100 or more,0
-25,VNITROBLOCK,Prague 7,Independent,4.5,1987,4.501096731739416,1.987,Above median,"Many (>1,000)",100 or more,0
-26,Cafe des Taxis,Prague 1,Independent,4.8,220,4.752718676122932,0.22,Below median,"Medium (100-1,000)",100 or more,1
-27,Bjukitchen,Prague 1,Independent,4.6,701,4.596316967447659,0.701,Above median,"Medium (100-1,000)",100 or more,0
-28,MetroCafe,Prague 1,Local Chain,3.9,680,3.944156222675605,0.68,Above median,"Medium (100-1,000)",100 or more,0
-29,Cafe Gate,Prague 1,International Chain,4.7,464,4.684891133371968,0.464,Above median,"Medium (100-1,000)",100 or more,1
-30,Ema Espresso Bar,Prague 7,Local Chain,4.8,107,4.718688169128608,0.107,Below median,"Medium (100-1,000)",100 or more,1
-31,Cafe Mezi Vetvemi,Prague 7,Independent,4.2,83,4.329579267317229,0.083,Below median,Few (<100),Under 100,0
-32,Lovely Day,Prague 7,Independent,4.2,1840,4.209118541033434,1.84,Above median,"Many (>1,000)",100 or more,0
-33,Bento Cafe and Bistro,Prague 7,Independent,4.5,650,4.503191489361702,0.65,Above median,"Medium (100-1,000)",100 or more,0
-34,21 Coffee,Prague 7,Local Chain,4.8,419,4.77278047452706,0.419,Below median,"Medium (100-1,000)",100 or more,1
-35,Pekárna Skýva,Prague 7,Independent,4.5,24,4.530189764232317,0.024,Below median,Few (<100),Under 100,0
-36,Bistro Monk,Prague 2,Local Chain,4.6,4449,4.599385206168746,4.449,Above median,"Many (>1,000)",100 or more,0
-37,Coffee&Crepes,Prague 1,Independent,4.6,311,4.592338068014381,0.311,Below median,"Medium (100-1,000)",100 or more,0
-38,The Miners Charles Bridge,Prague 2,Local Chain,4.7,45,4.618253079507278,0.045,Below median,Few (<100),Under 100,1
-39,Torto,Prague 1,Independent,4.9,304,4.84981367952879,0.304,Below median,"Medium (100-1,000)",100 or more,1
-40,Cukrkávalimonáda,Prague 1,Independent,4.3,970,4.311994159365874,0.97,Above median,"Medium (100-1,000)",100 or more,0
-41,Cafe Kaficko,Prague 1,Independent,3.6,1022,3.644061606859321,1.022,Above median,"Many (>1,000)",100 or more,0
-42,Stranou,Prague 2,Independent,4.8,167,4.741170703010099,0.167,Below median,"Medium (100-1,000)",100 or more,1
-43,Dobra Trafika,Prague 2,Independent,4.5,980,4.502168973352613,0.98,Above median,"Medium (100-1,000)",100 or more,0
-44,Cafe Vescovi,Prague 1,Independent,4.7,637,4.68869584068878,0.637,Above median,"Medium (100-1,000)",100 or more,1
-45,U Knoflicku,Prague 1,Independent,4.4,803,4.4084807063929565,0.803,Above median,"Medium (100-1,000)",100 or more,0
-46,Bon Bon Choc.,Prague 5,Independent,4.4,327,4.419188441785654,0.327,Below median,"Medium (100-1,000)",100 or more,0
-47,Cafe Savoy,Prague 5,Independent,4.2,8249,4.202076640866755,8.249,Above median,"Many (>1,000)",100 or more,0
-48,Nama,Prague 5,Independent,4.7,89,4.644129802540946,0.089,Below median,Few (<100),Under 100,1
-49,Kampa Cafe,Prague 5,Independent,4.6,1478,4.598189818424863,1.478,Above median,"Many (>1,000)",100 or more,0
-50,Kavarna Vsedmem Nebi,Prague 5,Independent,4.6,988,4.597335301110974,0.988,Above median,"Medium (100-1,000)",100 or more,0
-51,Kofarna,Prague 5,Independent,4.6,1421,4.59811967542705,1.421,Above median,"Many (>1,000)",100 or more,0
-52,The Spot,Prague 5,Independent,4.5,1416,4.501523903515137,1.416,Above median,"Many (>1,000)",100 or more,0
-53,Tisse,Prague 5,Independent,4.5,96,4.515301661323229,0.096,Below median,Few (<100),Under 100,0
-54,Zrno zrnko Smíchov,Prague 5,Independent,4.5,242,4.507650830661615,0.242,Below median,"Medium (100-1,000)",100 or more,0
-55,Cafe Alegre,Prague 5,Independent,4.6,196,4.588756270541428,0.196,Below median,"Medium (100-1,000)",100 or more,0
-56,Neapolis,Prague 1,Local Chain,4.6,177,4.587815165432561,0.177,Below median,"Medium (100-1,000)",100 or more,0
-57,Cafe Milani,Prague 1,Independent,4.4,1541,4.404546852641856,1.541,Above median,"Many (>1,000)",100 or more,0
-58,Typika Rostery,Prague 8,Independent,4.8,338,4.767098047817504,0.338,Below median,"Medium (100-1,000)",100 or more,1
-59,BA-LAM,Prague 8,Independent,4.9,891,4.881120130237186,0.891,Above median,"Medium (100-1,000)",100 or more,1
-60,Tchibo,Prague 3,Local Chain,3.9,137,4.072374559107975,0.137,Below median,"Medium (100-1,000)",100 or more,0
-61,Carpe Diem Flora,Prague 3,Independent,4.4,272,4.422465970662087,0.272,Below median,"Medium (100-1,000)",100 or more,0
-62,Lupinek Bakery and Coffee,Prague 3,Independent,4.6,41,4.569604863221884,0.041,Below median,Few (<100),Under 100,0
-63,Café Tout va bien,Prague 3,Independent,4.9,377,4.8583935422791376,0.377,Below median,"Medium (100-1,000)",100 or more,1
-64,Pekarna Cafe Polo,Prague 3,Local Chain,4.2,120,4.301376720901126,0.12,Below median,"Medium (100-1,000)",100 or more,0
-65,Cukrarstvi,Prague 3,Independent,4.8,380,4.770311726867887,0.38,Below median,"Medium (100-1,000)",100 or more,1
-66,Vila 63,Prague 3,Independent,4.5,820,4.502567865003669,0.82,Above median,"Medium (100-1,000)",100 or more,0
-67,Two Dots,Prague 3,Independent,4.7,152,4.661554666104908,0.152,Below median,"Medium (100-1,000)",100 or more,1
-68,Dance Cafe,Prague 3,Independent,4.3,68,4.403678326721961,0.068,Below median,Few (<100),Under 100,0
-69,Mugshot Cafe,Prague 3,Local Chain,4.9,347,4.855249477463959,0.347,Below median,"Medium (100-1,000)",100 or more,1
-70,Espressocono,Prague 3,Local Chain,4.5,55,4.5212765957446805,0.055,Below median,Few (<100),Under 100,0
-71,Plecnik,Prague 3,Independent,4.5,635,4.503261375990061,0.635,Above median,"Medium (100-1,000)",100 or more,0
-72,Fresh Corner,Prague 1,International Chain,4.3,16,4.485364281108962,0.016,Below median,Few (<100),Under 100,0
-73,Cafe Frida,Prague 8,Local Chain,4.4,1654,4.40424533013685,1.654,Above median,"Many (>1,000)",100 or more,0
-74,Vemsi Cafe,Prague 8,Independent,4.8,158,4.738625204582651,0.158,Below median,"Medium (100-1,000)",100 or more,1
-75,Pleiku Coffee,Prague 8,Independent,4.6,190,4.5884751773049635,0.19,Below median,"Medium (100-1,000)",100 or more,0
-76,KOPI,Prague 8,Independent,4.5,234,4.50786634701828,0.234,Below median,"Medium (100-1,000)",100 or more,0
-77,Divadelní kavárna pod Palmovkou,Prague 8,Independent,4.3,116,4.373699051525249,0.116,Below median,"Medium (100-1,000)",100 or more,0
-78,Cafe DECADA,Prague 8,Independent,4.5,940,4.502256608639587,0.94,Above median,"Medium (100-1,000)",100 or more,0
-79,Sweetbar Café,Prague 8,Independent,4.5,494,4.5041066958698375,0.494,Above median,"Medium (100-1,000)",100 or more,0
-80,EMA espresso bar,Prague 8,Local Chain,4.7,446,4.6843428277282095,0.446,NA,"Medium (100-1,000)",100 or more,1
-81,Pauza Palmovka,Prague 8,Independent,4.7,106,4.650218221494817,0.106,Below median,"Medium (100-1,000)",100 or more,1
-82,KRO Libeň,Prague 8,Independent,4.6,292,4.5919124051262905,0.292,Below median,"Medium (100-1,000)",100 or more,0
-83,The Miners Coffee Roastery,Prague 8,Local Chain,4.6,332,4.592759273699454,0.332,Below median,"Medium (100-1,000)",100 or more,0
+1,Cappuccineria,Prague 1,Local Chain,4,363,4.065869978390482,0.363,Below median,"Medium (100-1,000)",100 or more,0
+2,Starbucks Reserve,Prague 1,International Chain,4.4,1738,4.404029251160665,1.738,Above median,"Many (>1,000)",100 or more,0
+3,Lost Cafe and Bar,Prague 1,Independent,4.6,158,4.586559139784947,0.158,Below median,"Medium (100-1,000)",100 or more,0
+4,Mama coffee,Prague 1,Local Chain,4.4,2671,4.40264766669433,2.671,Above median,"Many (>1,000)",100 or more,0
+5,Cafe Neustadt,Prague 2,Independent,4.2,1938,4.20865407498756,1.938,Above median,"Many (>1,000)",100 or more,0
+6,Choco Cafe,Prague 1,Local Chain,4.7,3362,4.6977152113350735,3.362,Above median,"Many (>1,000)",100 or more,1
+7,Cafe Bar Ypsilon,Prague 1,Independent,4.6,47,4.571178361600709,0.047,Below median,Few (<100),Under 100,0
+8,Cafe KavOkno Ostrovini,Prague 1,Independent,4.8,277,4.760869422248528,0.277,Below median,"Medium (100-1,000)",100 or more,1
+9,Cafe Louvre,Prague 1,Independent,4.5,23951,4.500091842051384,23.951,Above median,"Many (>1,000)",100 or more,0
+10,Cafe Slavia,Prague 1,Independent,4.3,9395,4.301292144105375,9.395,Above median,"Many (>1,000)",100 or more,0
+11,Standard Cafe,Prague 1,Independent,4.6,952,4.597209881312643,0.952,Above median,"Medium (100-1,000)",100 or more,0
+12,Hues Kafe and Bistro,Prague 1,Independent,4.9,468,4.865645368871175,0.468,Above median,"Medium (100-1,000)",100 or more,1
+13,Dorado Coffee,Prague 1,Independent,4.7,437,4.68399240467201,0.437,Below median,"Medium (100-1,000)",100 or more,1
+14,Klub Betlemska,Prague 1,Independent,4.7,167,4.664075120162528,0.167,Below median,"Medium (100-1,000)",100 or more,1
+15,Myslis,Prague 1,Independent,4.8,713,4.783229752392226,0.713,Above median,"Medium (100-1,000)",100 or more,1
+16,Cafe Platyz,Prague 1,Independent,4.5,3213,4.500675544307469,3.213,Above median,"Many (>1,000)",100 or more,0
+17,Alfredo Caffe,Prague 1,Independent,4.6,1022,4.597392071898572,1.022,Above median,"Many (>1,000)",100 or more,0
+18,Koverna Koici Praha (Cat Cafe),Prague 1,Independent,4.4,3540,4.402006769101747,3.54,Above median,"Many (>1,000)",100 or more,0
+19,Staroprazska Galerie,Prague 1,Independent,4.5,278,4.506720430107527,0.278,Below median,"Medium (100-1,000)",100 or more,0
+20,Atlas Cafe,Prague 8,Independent,4.5,197,4.5089242958512905,0.197,Below median,"Medium (100-1,000)",100 or more,0
+21,Savaaca,Prague 7,Independent,4.9,117,4.793438928594424,0.117,Below median,"Medium (100-1,000)",100 or more,1
+22,The Miners Coffee Komunardů,Prague 7,Local Chain,4.9,258,4.842221756737886,0.258,Below median,"Medium (100-1,000)",100 or more,1
+23,Libeřské lahůdky Holešovice,Prague 7,Local Chain,4.7,265,4.675251749445298,0.265,Below median,"Medium (100-1,000)",100 or more,1
+24,Phill's Corner,Prague 7,Independent,4.3,1020,4.311405888855392,1.02,Above median,"Many (>1,000)",100 or more,0
+25,VNITROBLOCK,Prague 7,Independent,4.5,1987,4.501082131112062,1.987,Above median,"Many (>1,000)",100 or more,0
+26,Cafe des Taxis,Prague 1,Independent,4.8,220,4.752608522500996,0.22,Below median,"Medium (100-1,000)",100 or more,1
+27,Bjukitchen,Prague 1,Independent,4.6,701,4.596277364947095,0.701,Above median,"Medium (100-1,000)",100 or more,0
+28,MetroCafe,Prague 1,Local Chain,3.9,680,3.9441154809250256,0.68,Above median,"Medium (100-1,000)",100 or more,0
+29,Cafe Gate,Prague 1,International Chain,4.7,464,4.684833270574453,0.464,Above median,"Medium (100-1,000)",100 or more,1
+30,Ema Espresso Bar,Prague 7,Local Chain,4.8,107,4.7184987329634955,0.107,Below median,"Medium (100-1,000)",100 or more,1
+31,Cafe Mezi Vetvemi,Prague 7,Independent,4.2,83,4.329355647182472,0.083,Below median,Few (<100),Under 100,0
+32,Lovely Day,Prague 7,Independent,4.2,1840,4.20910280480173,1.84,Above median,"Many (>1,000)",100 or more,0
+33,Bento Cafe and Bistro,Prague 7,Independent,4.5,650,4.503149001536098,0.65,Above median,"Medium (100-1,000)",100 or more,0
+34,21 Coffee,Prague 7,Local Chain,4.8,419,4.7727170598619795,0.419,Below median,"Medium (100-1,000)",100 or more,1
+35,Pekárna Skýva,Prague 7,Independent,4.5,24,4.529787852368497,0.024,Below median,Few (<100),Under 100,0
+36,Bistro Monk,Prague 2,Local Chain,4.6,4449,4.5993785954823885,4.449,Above median,"Many (>1,000)",100 or more,0
+37,Coffee&Crepes,Prague 1,Independent,4.6,311,4.592255681648944,0.311,Below median,"Medium (100-1,000)",100 or more,0
+38,The Miners Charles Bridge,Prague 2,Local Chain,4.7,45,4.617940011318619,0.045,Below median,Few (<100),Under 100,1
+39,Torto,Prague 1,Independent,4.9,304,4.849729664054432,0.304,Below median,"Medium (100-1,000)",100 or more,1
+40,Cukrkávalimonáda,Prague 1,Independent,4.3,970,4.311965001054185,0.97,Above median,"Medium (100-1,000)",100 or more,0
+41,Cafe Kaficko,Prague 1,Independent,3.6,1022,3.6440338629433477,1.022,Above median,"Many (>1,000)",100 or more,0
+42,Stranou,Prague 2,Independent,4.8,167,4.741033645508151,0.167,Below median,"Medium (100-1,000)",100 or more,1
+43,Dobra Trafika,Prague 2,Independent,4.5,980,4.502140098131329,0.98,Above median,"Medium (100-1,000)",100 or more,0
+44,Cafe Vescovi,Prague 1,Independent,4.7,637,4.688652548872298,0.637,Above median,"Medium (100-1,000)",100 or more,1
+45,U Knoflicku,Prague 1,Independent,4.4,803,4.4084458394786274,0.803,Above median,"Medium (100-1,000)",100 or more,0
+46,Bon Bon Choc.,Prague 5,Independent,4.4,327,4.419109551923791,0.327,Below median,"Medium (100-1,000)",100 or more,0
+47,Cafe Savoy,Prague 5,Independent,4.2,8249,4.202073057124385,8.249,Above median,"Many (>1,000)",100 or more,0
+48,Nama,Prague 5,Independent,4.7,89,4.6439158350738765,0.089,Below median,Few (<100),Under 100,1
+49,Kampa Cafe,Prague 5,Independent,4.6,1478,4.598170354106851,1.478,Above median,"Many (>1,000)",100 or more,0
+50,Kavarna Vsedmem Nebi,Prague 5,Independent,4.6,988,4.597306648434747,0.988,Above median,"Medium (100-1,000)",100 or more,0
+51,Kofarna,Prague 5,Independent,4.6,1421,4.598099456883255,1.421,Above median,"Many (>1,000)",100 or more,0
+52,The Spot,Prague 5,Independent,4.5,1416,4.501503616013144,1.416,Above median,"Many (>1,000)",100 or more,0
+53,Tisse,Prague 5,Independent,4.5,96,4.5150979525703345,0.096,Below median,Few (<100),Under 100,0
+54,Zrno zrnko Smíchov,Prague 5,Independent,4.5,242,4.507548976285167,0.242,Below median,"Medium (100-1,000)",100 or more,0
+55,Cafe Alegre,Prague 5,Independent,4.6,196,4.58863537022467,0.196,Below median,"Medium (100-1,000)",100 or more,0
+56,Neapolis,Prague 1,Local Chain,4.6,177,4.58768414570603,0.177,Below median,"Medium (100-1,000)",100 or more,0
+57,Cafe Milani,Prague 1,Independent,4.4,1541,4.4045281590667935,1.541,Above median,"Many (>1,000)",100 or more,0
+58,Typika Rostery,Prague 8,Independent,4.8,338,4.767021394523889,0.338,Below median,"Medium (100-1,000)",100 or more,1
+59,BA-LAM,Prague 8,Independent,4.9,891,4.881088523990722,0.891,Above median,"Medium (100-1,000)",100 or more,1
+60,Tchibo,Prague 3,Local Chain,3.9,137,4.072215513771491,0.137,Below median,"Medium (100-1,000)",100 or more,0
+61,Carpe Diem Flora,Prague 3,Independent,4.4,272,4.422373605823817,0.272,Below median,"Medium (100-1,000)",100 or more,0
+62,Lupinek Bakery and Coffee,Prague 3,Independent,4.6,41,4.569278033794162,0.041,Below median,Few (<100),Under 100,0
+63,Café Tout va bien,Prague 3,Independent,4.9,377,4.858323890106016,0.377,Below median,"Medium (100-1,000)",100 or more,1
+64,Pekarna Cafe Polo,Prague 3,Local Chain,4.2,120,4.3012017710309935,0.12,Below median,"Medium (100-1,000)",100 or more,0
+65,Cukrarstvi,Prague 3,Independent,4.8,380,4.77024256064016,0.38,Below median,"Medium (100-1,000)",100 or more,1
+66,Vila 63,Prague 3,Independent,4.5,820,4.50253367939686,0.82,Above median,"Medium (100-1,000)",100 or more,0
+67,Two Dots,Prague 3,Independent,4.7,152,4.661407431065687,0.152,Below median,"Medium (100-1,000)",100 or more,1
+68,Dance Cafe,Prague 3,Independent,4.3,68,4.403426280298888,0.068,Below median,Few (<100),Under 100,0
+69,Mugshot Cafe,Prague 3,Local Chain,4.9,347,4.855174561902441,0.347,Below median,"Medium (100-1,000)",100 or more,1
+70,Espressocono,Prague 3,Local Chain,4.5,55,4.520993343573989,0.055,Below median,Few (<100),Under 100,0
+71,Plecnik,Prague 3,Independent,4.5,635,4.5032179577741145,0.635,Above median,"Medium (100-1,000)",100 or more,0
+72,Fresh Corner,Prague 1,International Chain,4.3,16,4.484913652655588,0.016,Below median,Few (<100),Under 100,0
+73,Cafe Frida,Prague 8,Local Chain,4.4,1654,4.404227876217881,1.654,Above median,"Many (>1,000)",100 or more,0
+74,Vemsi Cafe,Prague 8,Independent,4.8,158,4.7384822167080225,0.158,Below median,"Medium (100-1,000)",100 or more,1
+75,Pleiku Coffee,Prague 8,Independent,4.6,190,4.588351254480286,0.19,Below median,"Medium (100-1,000)",100 or more,0
+76,KOPI,Prague 8,Independent,4.5,234,4.507761623504468,0.234,Below median,"Medium (100-1,000)",100 or more,0
+77,Divadelní kavárna pod Palmovkou,Prague 8,Independent,4.3,116,4.373519885995595,0.116,Below median,"Medium (100-1,000)",100 or more,0
+78,Cafe DECADA,Prague 8,Independent,4.5,940,4.502226566742696,0.94,Above median,"Medium (100-1,000)",100 or more,0
+79,Sweetbar Café,Prague 8,Independent,4.5,494,4.5040520240354205,0.494,Above median,"Medium (100-1,000)",100 or more,0
+80,EMA espresso bar,Prague 8,Local Chain,4.7,446,4.684282865071107,0.446,NA,"Medium (100-1,000)",100 or more,1
+81,Pauza Palmovka,Prague 8,Independent,4.7,106,4.650027570995314,0.106,Below median,"Medium (100-1,000)",100 or more,1
+82,KRO Libeň,Prague 8,Independent,4.6,292,4.591825441740552,0.292,Below median,"Medium (100-1,000)",100 or more,0
+83,The Miners Coffee Roastery,Prague 8,Local Chain,4.6,332,4.592681416427405,0.332,Below median,"Medium (100-1,000)",100 or more,0
 84,Café Fiesta,Prague 8,Independent,NA,0,NA,0,Below median,Few (<100),Under 100,NA
-85,Light roast Coffee,Prague 8,Independent,4.6,292,4.5919124051262905,0.292,Below median,"Medium (100-1,000)",100 or more,0
-86,1 Minute,Prague 8,International Chain,3.7,23,4.278548528125911,0.023,Below median,Few (<100),Under 100,0
-87,Kavíno,Prague 8,Local Chain,4.6,61,4.5750814644431665,0.061,Below median,Few (<100),Under 100,0
-88,DECAGRAM,Prague 8,Independent,4.5,37,4.525678650036683,0.037,Below median,Few (<100),Under 100,0
-89,Elian's Coffee House,Prague 9,Independent,4.6,265,4.591219182708545,0.265,Below median,"Medium (100-1,000)",100 or more,0
-90,Kavarna-cukrarna Coffee House,Prague 9,Independent,4,3,4.5138498594941785,0.003,Below median,Few (<100),Under 100,0
-91,EAZY Café,Prague 9,Independent,4.6,605,4.595777164203346,0.605,Above median,"Medium (100-1,000)",100 or more,0
-92,Rodinná farma,Prague 9,Local Chain,4.3,6,4.518465045592705,0.006,Below median,Few (<100),Under 100,0
-93,Kin & K Bakery,Prague 9,Local Chain,4.7,252,4.674284909116529,0.252,Below median,"Medium (100-1,000)",100 or more,1
-94,Duo cafe&bistro,Prague 5,Independent,4.7,221,4.671343330454581,0.221,Below median,"Medium (100-1,000)",100 or more,1
-95,Kafe Brana,Prague 5,Independent,4.6,101,4.581682401014513,0.101,Below median,"Medium (100-1,000)",100 or more,0
-96,boomerang coffe,Prague 5,Independent,4.7,242,4.6734042553191495,0.242,Below median,"Medium (100-1,000)",100 or more,1
+85,Light roast Coffee,Prague 8,Independent,4.6,292,4.591825441740552,0.292,Below median,"Medium (100-1,000)",100 or more,0
+86,1 Minute,Prague 8,International Chain,3.7,23,4.278141110620121,0.023,Below median,Few (<100),Under 100,0
+87,Kavíno,Prague 8,Local Chain,4.6,61,4.5748135232006195,0.061,Below median,Few (<100),Under 100,0
+88,DECAGRAM,Prague 8,Independent,4.5,37,4.525336793968607,0.037,Below median,Few (<100),Under 100,0
+89,Elian's Coffee House,Prague 9,Independent,4.6,265,4.591124765318314,0.265,Below median,"Medium (100-1,000)",100 or more,0
+90,Kavarna-cukrarna Coffee House,Prague 9,Independent,4,3,4.513288699533374,0.003,Below median,Few (<100),Under 100,0
+91,EAZY Café,Prague 9,Independent,4.6,605,4.595731757366822,0.605,Above median,"Medium (100-1,000)",100 or more,0
+92,Rodinná farma,Prague 9,Local Chain,4.3,6,4.517933947772657,0.006,Below median,Few (<100),Under 100,0
+93,Kin & K Bakery,Prague 9,Local Chain,4.7,252,4.674186427401553,0.252,Below median,"Medium (100-1,000)",100 or more,1
+94,Duo cafe&bistro,Prague 5,Independent,4.7,221,4.671233583303575,0.221,Below median,"Medium (100-1,000)",100 or more,1
+95,Kafe Brana,Prague 5,Independent,4.6,101,4.581485437584561,0.101,Below median,"Medium (100-1,000)",100 or more,0
+96,boomerang coffe,Prague 5,Independent,4.7,242,4.673302400942702,0.242,Below median,"Medium (100-1,000)",100 or more,1
 98,bakery and coffee,Prague 1,Independent,NA,NA,NA,NA,NA,NA,NA,NA
 99,cafe 22,Prague 1,Independent,NA,NA,NA,NA,NA,NA,NA,NA
-100,murano gelato,Prague 1,Independent,3.6,746,3.6593392494386827,0.746,Above median,"Medium (100-1,000)",100 or more,0
-101,art cafe,Prague 1,Independent,4.6,236,4.590328820116054,0.236,Below median,"Medium (100-1,000)",100 or more,0
-102,cafe cafe,Prague 1,Independent,4.2,4520,4.203771125285162,4.52,Above median,"Many (>1,000)",100 or more,0
-104,Národní 38,Prague 1,Independent,4.5,857,4.5024631119660325,0.857,Above median,"Medium (100-1,000)",100 or more,0
-105,Umamy Cafe,Prague 1,Independent,4.6,438,4.594332054412277,0.438,Below median,"Medium (100-1,000)",100 or more,0
-106,Republica Coffee,Prague 1,Independent,4.4,1087,4.406362394505885,1.087,Above median,"Many (>1,000)",100 or more,0
-107,Café Tone,Prague 5,Independent,4.8,718,4.783377659574469,0.718,Above median,"Medium (100-1,000)",100 or more,1
-108,Space Café Anděl,Prague 5,Independent,4.6,350,4.593085106382978,0.35,Below median,"Medium (100-1,000)",100 or more,0
-109,forbina,Prague 1,Local Chain,4.7,452,4.684529965245401,0.452,Above median,"Medium (100-1,000)",100 or more,1
-110,mondiu,Prague 1,Local Chain,4.7,269,4.675655305809378,0.269,Below median,"Medium (100-1,000)",100 or more,1
-111,esperesso no 26,Prague 1,Independent,4.8,351,4.768164694646363,0.351,Below median,"Medium (100-1,000)",100 or more,1
-112,Paul,Prague 1,Independent,4.1,2093,4.110375194845166,2.093,Above median,"Many (>1,000)",100 or more,0
-113,GoFrancin,Prague 5,Independent,4.6,645,4.596020205112505,0.645,Above median,"Medium (100-1,000)",100 or more,0
-114,Bistro Quido,Prague 1,Independent,3.8,46,4.187854609929078,0.046,Below median,Few (<100),Under 100,0
-115,Mullet Man Coffee,Prague 1,Independent,4.6,108,4.582493940210072,0.108,Below median,"Medium (100-1,000)",100 or more,0
-116,Café & Bistro Minimum Waste,Prague 1,Independent,4.5,697,4.502990686148851,0.697,Above median,"Medium (100-1,000)",100 or more,0
-117,Kavárna Creperié,Prague 11,Local Chain,4,241,4.0935877750968785,0.241,Below median,"Medium (100-1,000)",100 or more,0
-118,Starbucks,Prague 1,International Chain,4.2,757,4.221355690896148,0.757,Above median,"Medium (100-1,000)",100 or more,0
-119,Spálený Kafe,Prague 1,Independent,4.6,386,4.593656060901815,0.386,Below median,"Medium (100-1,000)",100 or more,0
-120,IPPA Café Jungmannova,Prague 1,Local Chain,4.5,1679,4.501292100956155,1.679,Above median,"Many (>1,000)",100 or more,0
-121,Dabov Specialty Coffee Prague 1,Prague 1,International Chain,4.8,490,4.776359338061466,0.49,Above median,"Medium (100-1,000)",100 or more,1
-122,Staročeská pekárna - cukrárna,Prague 1,Local Chain,4.6,387,4.593670577924923,0.387,Below median,"Medium (100-1,000)",100 or more,0
-123,Coffee and Riot,Prague 1,Independent,4.7,1287,4.694191505275387,1.287,Above median,"Many (>1,000)",100 or more,1
-124,Rybka Café,Prague 1,Independent,4.4,466,4.414019462312387,0.466,Above median,"Medium (100-1,000)",100 or more,0
-125,Cafe 25 Bistro,Prague 1,Local Chain,4.5,483,4.5041914494431365,0.483,Above median,"Medium (100-1,000)",100 or more,0
-126,Café Modi,Prague 2,Independent,4.4,1042,4.406624581092666,1.042,Above median,"Many (>1,000)",100 or more,0
-127,Café Husovka,Prague 1,Independent,4.8,546,4.778580608310723,0.546,Above median,"Medium (100-1,000)",100 or more,1
-128,café 11,Prague 1,Independent,4.3,904,4.312823943976091,0.904,Above median,"Medium (100-1,000)",100 or more,0
-129,Cappuccino Sandwich Shop & Cafe,Prague 1,Independent,4,29,4.344734715863183,0.029,Below median,Few (<100),Under 100,0
-130,The Miners Coffee Old Town,Prague 1,Local Chain,4.7,1337,4.694400895856663,1.337,Above median,"Many (>1,000)",100 or more,1
-131,No26 Espresso,Prague 1,Independent,4.8,351,4.768164694646363,0.351,Below median,"Medium (100-1,000)",100 or more,1
-132,EMA espresso bar,Prague 1,Local Chain,4.6,3823,4.599285835929045,3.823,Above median,"Many (>1,000)",100 or more,0
-133,Café V Ráji,Prague 8,Independent,4.7,224,4.671657089610188,0.224,Below median,"Medium (100-1,000)",100 or more,1
-134,KOLEKTOR,Prague 7,Independent,4.6,1499,4.59821435929838,1.499,Above median,"Many (>1,000)",100 or more,0
-135,format.coffee,Prague 7,NA,4.8,470,4.7754500818330605,0.47,Above median,"Medium (100-1,000)",100 or more,1
-136,"25,2 rpm",Prague 7,Independent,4.8,190,4.7468085106382985,0.19,Below median,"Medium (100-1,000)",100 or more,1
-137,Kumbál,Prague 7,Independent,4.8,846,4.7857522796352585,0.846,Above median,"Medium (100-1,000)",100 or more,1
-138,Letec espresso bar,Prague 7,Independent,4.8,284,4.761778570518538,0.284,Below median,"Medium (100-1,000)",100 or more,1
-139,Ye's kafe | studio,Prague 7,Independent,4.6,456,4.594533680935161,0.456,Above median,"Medium (100-1,000)",100 or more,0
-140,Cukrárna Alchymista,Prague 7,Independent,4.7,1266,4.69409881652978,1.266,Above median,"Many (>1,000)",100 or more,1
-141,Happy Rabbit Café & Bistro,Prague 5,Independent,4.8,165,4.7406234537357745,0.165,Below median,"Medium (100-1,000)",100 or more,1
-143,Tomcat coffee Košíře,Prague 7,Local Chain,4.8,175,4.743262411347518,0.175,Below median,"Medium (100-1,000)",100 or more,1
-145,Moe,Prague 7,Independent,4.8,207,4.750327013825648,0.207,Below median,"Medium (100-1,000)",100 or more,1
-146,Antoninovo Pekarstvi,Prague 7,Local Chain,4.5,1228,4.501748077115173,1.228,Above median,"Many (>1,000)",100 or more,0
-147,Crème de la Crème,Prague 7,Local Chain,4.5,222,4.508213391739675,0.222,Below median,"Medium (100-1,000)",100 or more,0
-148,Brunch in the Box,Prague 7,Independent,3.9,20,4.360486322188449,0.02,Below median,Few (<100),Under 100,0
-149,La Forme Cafe,Prague 7,Independent,4.7,595,4.687959755896421,0.595,Above median,"Medium (100-1,000)",100 or more,1
-150,La Brioche,Prague 7,Local Chain,4.4,44,4.476957899502037,0.044,Below median,Few (<100),Under 100,0
-151,Ouky Douky Coffee,Prague 7,Independent,4.4,1136,4.406099529977396,1.136,Above median,"Many (>1,000)",100 or more,0
-152,Kavárna Liberál,Prague 7,Independent,4.4,1693,4.404150339961671,1.693,Above median,"Many (>1,000)",100 or more,0
-153,Pilot Cafe Letná,Prague 7,Local Chain,4.5,1264,4.50170018459147,1.264,Above median,"Many (>1,000)",100 or more,0
-154,Cafe Hernek,Prague 7,Independent,4.6,807,4.596772511730679,0.807,Above median,"Medium (100-1,000)",100 or more,0
-155,Cafe 7 Bar,Prague 7,Independent,4.8,282,4.761548320943348,0.282,Below median,"Medium (100-1,000)",100 or more,1
-156,Kafe Francin,Prague 7,Independent,4.6,1656,4.598378688483699,1.656,Above median,"Many (>1,000)",100 or more,0
-157,Dos Mundos,Prague 7,Local Chain,4.7,901,4.69183390384142,0.901,Above median,"Medium (100-1,000)",100 or more,1
-160,artic Bakehouse,Prague 5,Local Chain,4.4,283,4.421723851511086,0.283,Below median,"Medium (100-1,000)",100 or more,0
-161,Version Coffee,Prague 2,Independent,4.7,771,4.690540855728614,0.771,Above median,"Medium (100-1,000)",100 or more,1
-162,Kavárna Pražírna,Prague 2,Independent,4.7,2081,4.696355721517218,2.081,Above median,"Many (>1,000)",100 or more,1
-163,GRØN Bistro,Prague 2,Independent,4.8,1138,4.789254244573393,1.138,Above median,"Many (>1,000)",100 or more,1
-164,Cafedu,Prague 2,Independent,4.6,2242,4.598793212283241,2.242,Above median,"Many (>1,000)",100 or more,0
-165,Coffee Room,Prague 10,Local Chain,4.6,1201,4.597789002840281,1.201,Above median,"Many (>1,000)",100 or more,0
-166,coffee corner bakery,Prague 10,Local Chain,4.4,2442,4.402902906321506,2.442,Above median,"Many (>1,000)",100 or more,0
-167,Cafefin coffee,Prague 2,Local Chain,4.5,3306,4.500665686100474,3.306,Above median,"Many (>1,000)",100 or more,0
-168,may cafe,Prague 2,Local Chain,4.7,397,4.682626493407588,0.397,Below median,"Medium (100-1,000)",100 or more,1
-169,ô-mai Coffee & Brunch,Prague 2,Independent,4.7,1365,4.6945116908503115,1.365,Above median,"Many (>1,000)",100 or more,1
-170,WILD Cafe,Prague 2,Independent,4.6,213,4.589483051533048,0.213,Below median,"Medium (100-1,000)",100 or more,0
-171,La Bohème Café Specialty Coffee Roastery,Prague 2,Local Chain,4.5,2578,4.500850092295734,2.578,Above median,"Many (>1,000)",100 or more,0
-172,Café Jen,Prague 10,Independent,4.7,1520,4.695053530288657,1.52,Above median,"Many (>1,000)",100 or more,1
-173,The FLAT cafe,Prague 10,Independent,4.5,1590,4.501362221069019,1.59,Above median,"Many (>1,000)",100 or more,0
-174,CAFE TONE Tylovo náměstí,Prague 2,Local Chain,4.9,188,4.8253531199713935,0.188,Below median,"Medium (100-1,000)",100 or more,1
-175,Coffee Factory,Prague 2,Independent,4.6,2004,4.598653380016159,2.004,Above median,"Many (>1,000)",100 or more,0
-176,Cloud room,Prague 2,Independent,4.8,919,4.786825637309795,0.919,Above median,"Medium (100-1,000)",100 or more,1
-177,Strop Café & Catering,Prague 2,Independent,4.6,223,4.589868287740628,0.223,Below median,"Medium (100-1,000)",100 or more,0
-178,The Kavárna.,Prague 2,Independent,4.5,593,4.5034744052149165,0.593,Above median,"Medium (100-1,000)",100 or more,0
-179,Sweet & Pepper DAYS,Prague 2,Local Chain,4.7,1520,4.695053530288657,1.52,Above median,"Many (>1,000)",100 or more,1
-180,"MATOKA Georgian, Bakery & Coffee",Prague 2,Independent,4.7,2153,4.696474826397273,2.153,Above median,"Many (>1,000)",100 or more,1
-181,The Cup,Prague 8,Independent,4.8,149,4.735849460066288,0.149,Below median,"Medium (100-1,000)",100 or more,1
-182,Atomic matcha,Prague 8,Local Chain,4.7,309,4.678367806554851,0.309,Below median,"Medium (100-1,000)",100 or more,1
-183,Kafe Karlín,Prague 8,Independent,4.8,560,4.779072200906872,0.56,Above median,"Medium (100-1,000)",100 or more,1
-184,Imaginární zmrzlina,Prague 8,Independent,4.7,195,4.668302214502822,0.195,Below median,"Medium (100-1,000)",100 or more,1
-185,Cafe Parlor,Prague 8,Independent,4.4,1591,4.404408313560751,1.591,Above median,"Many (>1,000)",100 or more,0
-186,upernova Bakehouse,Prague 8,Local Chain,4.7,221,4.671343330454581,0.221,Below median,"Medium (100-1,000)",100 or more,1
-187,Kafé Garáž,Prague 8,Independent,4.8,495,4.776576224868242,0.495,Above median,"Medium (100-1,000)",100 or more,1
-188,PAUL Karlín,Prague 8,International Chain,3.8,50,4.172340425531915,0.05,Below median,Few (<100),Under 100,0
-189,Off bistro,Prague 8,Independent,4.2,61,4.355261644623346,0.061,Below median,Few (<100),Under 100,0
-190,Riders Coffee,Prague 8,Independent,4.7,384,4.6821060888322394,0.384,Below median,"Medium (100-1,000)",100 or more,1
-191,EMA Espresso Bar Karlin,Prague 8,Local Chain,4.6,690,4.596262219666475,0.69,Above median,"Medium (100-1,000)",100 or more,0
-192,Space Café Karlín,Prague 8,Local Chain,4.6,140,4.585442329227323,0.14,Below median,"Medium (100-1,000)",100 or more,0
-193,Eska Karlín,Prague 8,Local Chain,4.5,5146,4.500429954302,5.146,Above median,"Many (>1,000)",100 or more,0
-194,Starbucks Karlin,Prague 8,International Chain,4.3,905,4.312810515762504,0.905,Above median,"Medium (100-1,000)",100 or more,0
-195,Kichi Karlín,Prague 8,Independent,4.7,292,4.677292522085356,0.292,Below median,"Medium (100-1,000)",100 or more,1
-196,Caffé Milani,Prague 1,Independent,4.4,1541,4.404546852641856,1.541,Above median,"Many (>1,000)",100 or more,0
-199,La Forme Rytířská,Prague 1,Independent,5,48,4.76769431176726,0.048,Below median,Few (<100),Under 100,1
+100,murano gelato,Prague 1,Independent,3.6,746,3.6593018857729502,0.746,Above median,"Medium (100-1,000)",100 or more,0
+101,art cafe,Prague 1,Independent,4.6,236,4.590224828934506,0.236,Below median,"Medium (100-1,000)",100 or more,0
+102,cafe cafe,Prague 1,Independent,4.2,4520,4.203764617303122,4.52,Above median,"Many (>1,000)",100 or more,0
+104,Národní 38,Prague 1,Independent,4.5,857,4.502430320920913,0.857,Above median,"Medium (100-1,000)",100 or more,0
+105,Umamy Cafe,Prague 1,Independent,4.6,438,4.594271108760797,0.438,Below median,"Medium (100-1,000)",100 or more,0
+106,Republica Coffee,Prague 1,Independent,4.4,1087,4.40633623665371,1.087,Above median,"Many (>1,000)",100 or more,0
+107,Café Tone,Prague 5,Independent,4.8,718,4.7833389336917564,0.718,Above median,"Medium (100-1,000)",100 or more,1
+108,Space Café Anděl,Prague 5,Independent,4.6,350,4.593010752688172,0.35,Below median,"Medium (100-1,000)",100 or more,0
+109,forbina,Prague 1,Local Chain,4.7,452,4.684470719273444,0.452,Above median,"Medium (100-1,000)",100 or more,1
+110,mondiu,Prague 1,Local Chain,4.7,269,4.675562072336266,0.269,Below median,"Medium (100-1,000)",100 or more,1
+111,esperesso no 26,Prague 1,Independent,4.8,351,4.768090526372242,0.351,Below median,"Medium (100-1,000)",100 or more,1
+112,Paul,Prague 1,Independent,4.1,2093,4.110361316414031,2.093,Above median,"Many (>1,000)",100 or more,0
+113,GoFrancin,Prague 5,Independent,4.6,645,4.595977411619091,0.645,Above median,"Medium (100-1,000)",100 or more,0
+114,Bistro Quido,Prague 1,Independent,3.8,46,4.187544802867383,0.046,Below median,Few (<100),Under 100,0
+115,Mullet Man Coffee,Prague 1,Independent,4.6,108,4.58230570300803,0.108,Below median,"Medium (100-1,000)",100 or more,0
+116,Café & Bistro Minimum Waste,Prague 1,Independent,4.5,697,4.502950871586705,0.697,Above median,"Medium (100-1,000)",100 or more,0
+117,Kavárna Creperié,Prague 11,Local Chain,4,241,4.093485570705392,0.241,Below median,"Medium (100-1,000)",100 or more,0
+118,Starbucks,Prague 1,International Chain,4.2,757,4.221318836524497,0.757,Above median,"Medium (100-1,000)",100 or more,0
+119,Spálený Kafe,Prague 1,Independent,4.6,386,4.59358784650291,0.386,Below median,"Medium (100-1,000)",100 or more,0
+120,IPPA Café Jungmannova,Prague 1,Local Chain,4.5,1679,4.501274899407327,1.679,Above median,"Many (>1,000)",100 or more,0
+121,Dabov Specialty Coffee Prague 1,Prague 1,International Chain,4.8,490,4.776304261250497,0.49,Above median,"Medium (100-1,000)",100 or more,1
+122,Staročeská pekárna - cukrárna,Prague 1,Local Chain,4.6,387,4.59360251962304,0.387,Below median,"Medium (100-1,000)",100 or more,0
+123,Coffee and Riot,Prague 1,Independent,4.7,1287,4.694169260340516,1.287,Above median,"Many (>1,000)",100 or more,1
+124,Rybka Café,Prague 1,Independent,4.4,466,4.413961823789281,0.466,Above median,"Medium (100-1,000)",100 or more,0
+125,Cafe 25 Bistro,Prague 1,Local Chain,4.5,483,4.5041356492969395,0.483,Above median,"Medium (100-1,000)",100 or more,0
+126,Café Modi,Prague 2,Independent,4.4,1042,4.406597345307023,1.042,Above median,"Many (>1,000)",100 or more,0
+127,Café Husovka,Prague 1,Independent,4.8,546,4.778530706502128,0.546,Above median,"Medium (100-1,000)",100 or more,1
+128,café 11,Prague 1,Independent,4.3,904,4.312792768422713,0.904,Above median,"Medium (100-1,000)",100 or more,0
+129,Cappuccino Sandwich Shop & Cafe,Prague 1,Independent,4,29,4.344358241459099,0.029,Below median,Few (<100),Under 100,0
+130,The Miners Coffee Old Town,Prague 1,Local Chain,4.7,1337,4.694379452830042,1.337,Above median,"Many (>1,000)",100 or more,1
+132,EMA espresso bar,Prague 1,Local Chain,4.6,3823,4.599278156745486,3.823,Above median,"Many (>1,000)",100 or more,0
+133,Café V Ráji,Prague 8,Independent,4.7,224,4.671548544070324,0.224,Below median,"Medium (100-1,000)",100 or more,1
+134,KOLEKTOR,Prague 7,Independent,4.6,1499,4.598195158860729,1.499,Above median,"Many (>1,000)",100 or more,0
+135,format.coffee,Prague 7,NA,4.8,470,4.775392886683209,0.47,Above median,"Medium (100-1,000)",100 or more,1
+136,"25,2 rpm",Prague 7,Independent,4.8,190,4.74668458781362,0.19,Below median,"Medium (100-1,000)",100 or more,1
+137,Kumbál,Prague 7,Independent,4.8,846,4.785719086021506,0.846,Above median,"Medium (100-1,000)",100 or more,1
+138,Letec espresso bar,Prague 7,Independent,4.8,284,4.761689524177452,0.284,Below median,"Medium (100-1,000)",100 or more,1
+139,Ye's kafe | studio,Prague 7,Independent,4.6,456,4.594474903310807,0.456,Above median,"Medium (100-1,000)",100 or more,0
+140,Cukrárna Alchymista,Prague 7,Independent,4.7,1266,4.694076216622545,1.266,Above median,"Many (>1,000)",100 or more,1
+141,Happy Rabbit Café & Bistro,Prague 5,Independent,4.8,165,4.7404851212803205,0.165,Below median,"Medium (100-1,000)",100 or more,1
+143,Tomcat coffee Košíře,Prague 7,Local Chain,4.8,175,4.743130227001195,0.175,Below median,"Medium (100-1,000)",100 or more,1
+145,Moe,Prague 7,Independent,4.8,207,4.750211288230617,0.207,Below median,"Medium (100-1,000)",100 or more,1
+146,Antoninovo Pekarstvi,Prague 7,Local Chain,4.5,1228,4.501724805223215,1.228,Above median,"Many (>1,000)",100 or more,0
+147,Crème de la Crème,Prague 7,Local Chain,4.5,222,4.508104048070841,0.222,Below median,"Medium (100-1,000)",100 or more,0
+148,Brunch in the Box,Prague 7,Independent,3.9,20,4.360061443932412,0.02,Below median,Few (<100),Under 100,0
+149,La Forme Cafe,Prague 7,Independent,4.7,595,4.687913645077936,0.595,Above median,"Medium (100-1,000)",100 or more,1
+150,La Brioche,Prague 7,Local Chain,4.4,44,4.476641500800732,0.044,Below median,Few (<100),Under 100,0
+151,Ouky Douky Coffee,Prague 7,Independent,4.4,1136,4.406074452845926,1.136,Above median,"Many (>1,000)",100 or more,0
+152,Kavárna Liberál,Prague 7,Independent,4.4,1693,4.404133276577894,1.693,Above median,"Many (>1,000)",100 or more,0
+153,Pilot Cafe Letná,Prague 7,Local Chain,4.5,1264,4.501677550285592,1.264,Above median,"Many (>1,000)",100 or more,0
+154,Cafe Hernek,Prague 7,Independent,4.6,807,4.596737807555739,0.807,Above median,"Medium (100-1,000)",100 or more,0
+155,Cafe 7 Bar,Prague 7,Independent,4.8,282,4.76145873817852,0.282,Below median,"Medium (100-1,000)",100 or more,1
+156,Kafe Francin,Prague 7,Independent,4.6,1656,4.598361255026535,1.656,Above median,"Many (>1,000)",100 or more,0
+157,Dos Mundos,Prague 7,Local Chain,4.7,901,4.6918026299424485,0.901,Above median,"Medium (100-1,000)",100 or more,1
+160,artic Bakehouse,Prague 5,Local Chain,4.4,283,4.421634537763571,0.283,Below median,"Medium (100-1,000)",100 or more,0
+161,Version Coffee,Prague 2,Independent,4.7,771,4.690504629811533,0.771,Above median,"Medium (100-1,000)",100 or more,1
+162,Kavárna Pražírna,Prague 2,Independent,4.7,2081,4.69634176493443,2.081,Above median,"Many (>1,000)",100 or more,1
+163,GRØN Bistro,Prague 2,Independent,4.8,1138,4.789229209659316,1.138,Above median,"Many (>1,000)",100 or more,1
+164,Cafedu,Prague 2,Independent,4.6,2242,4.598780236071234,2.242,Above median,"Many (>1,000)",100 or more,0
+165,Coffee Room,Prague 10,Local Chain,4.6,1201,4.5977652286772726,1.201,Above median,"Many (>1,000)",100 or more,0
+166,coffee corner bakery,Prague 10,Local Chain,4.4,2442,4.402890971539033,2.442,Above median,"Many (>1,000)",100 or more,0
+167,Cafefin coffee,Prague 2,Local Chain,4.5,3306,4.500656823919925,3.306,Above median,"Many (>1,000)",100 or more,0
+168,may cafe,Prague 2,Local Chain,4.7,397,4.682559957662794,0.397,Below median,"Medium (100-1,000)",100 or more,1
+169,ô-mai Coffee & Brunch,Prague 2,Independent,4.7,1365,4.694490672137999,1.365,Above median,"Many (>1,000)",100 or more,1
+170,WILD Cafe,Prague 2,Independent,4.6,213,4.589369966065661,0.213,Below median,"Medium (100-1,000)",100 or more,0
+171,La Bohème Café Specialty Coffee Roastery,Prague 2,Local Chain,4.5,2578,4.500838775142797,2.578,Above median,"Many (>1,000)",100 or more,0
+172,Café Jen,Prague 10,Independent,4.7,1520,4.695034586672145,1.52,Above median,"Many (>1,000)",100 or more,1
+173,The FLAT cafe,Prague 10,Independent,4.5,1590,4.501344086021505,1.59,Above median,"Many (>1,000)",100 or more,0
+174,CAFE TONE Tylovo náměstí,Prague 2,Local Chain,4.9,188,4.825228155778441,0.188,Below median,"Medium (100-1,000)",100 or more,1
+175,Coffee Factory,Prague 2,Independent,4.6,2004,4.598638900231387,2.004,Above median,"Many (>1,000)",100 or more,0
+176,Cloud room,Prague 2,Independent,4.8,919,4.786794944350122,0.919,Above median,"Medium (100-1,000)",100 or more,1
+177,Strop Café & Catering,Prague 2,Independent,4.6,223,4.589759344598054,0.223,Below median,"Medium (100-1,000)",100 or more,0
+178,The Kavárna.,Prague 2,Independent,4.5,593,4.503428150972424,0.593,Above median,"Medium (100-1,000)",100 or more,0
+179,Sweet & Pepper DAYS,Prague 2,Local Chain,4.7,1520,4.695034586672145,1.52,Above median,"Many (>1,000)",100 or more,1
+180,"MATOKA Georgian, Bakery & Coffee",Prague 2,Independent,4.7,2153,4.6964613259533685,2.153,Above median,"Many (>1,000)",100 or more,1
+181,The Cup,Prague 8,Independent,4.8,149,4.73570000540336,0.149,Below median,"Medium (100-1,000)",100 or more,1
+182,Atomic matcha,Prague 8,Local Chain,4.7,309,4.678284961212448,0.309,Below median,"Medium (100-1,000)",100 or more,1
+183,Kafe Karlín,Prague 8,Independent,4.8,560,4.779023444385686,0.56,Above median,"Medium (100-1,000)",100 or more,1
+184,Imaginární zmrzlina,Prague 8,Independent,4.7,195,4.668180820715383,0.195,Below median,"Medium (100-1,000)",100 or more,1
+185,Cafe Parlor,Prague 8,Independent,4.4,1591,4.404390189564454,1.591,Above median,"Many (>1,000)",100 or more,0
+186,upernova Bakehouse,Prague 8,Local Chain,4.7,221,4.671233583303575,0.221,Below median,"Medium (100-1,000)",100 or more,1
+187,Kafé Garáž,Prague 8,Independent,4.8,495,4.776521653349117,0.495,Above median,"Medium (100-1,000)",100 or more,1
+188,PAUL Karlín,Prague 8,International Chain,3.8,50,4.172043010752688,0.05,Below median,Few (<100),Under 100,0
+189,Off bistro,Prague 8,Independent,4.2,61,4.3549937033808,0.061,Below median,Few (<100),Under 100,0
+190,Riders Coffee,Prague 8,Independent,4.7,384,4.682037560081265,0.384,Below median,"Medium (100-1,000)",100 or more,1
+191,EMA Espresso Bar Karlin,Prague 8,Local Chain,4.6,690,4.596222028480092,0.69,Above median,"Medium (100-1,000)",100 or more,0
+192,Space Café Karlín,Prague 8,Local Chain,4.6,140,4.585285795132994,0.14,Below median,"Medium (100-1,000)",100 or more,0
+193,Eska Karlín,Prague 8,Local Chain,4.5,5146,4.5004242303840005,5.146,Above median,"Many (>1,000)",100 or more,0
+194,Starbucks Karlin,Prague 8,International Chain,4.3,905,4.312779372853685,0.905,Above median,"Medium (100-1,000)",100 or more,0
+195,Kichi Karlín,Prague 8,Independent,4.7,292,4.677205558699617,0.292,Below median,"Medium (100-1,000)",100 or more,1
+199,La Forme Rytířská,Prague 1,Independent,5,48,4.767390827298661,0.048,Below median,Few (<100),Under 100,1
